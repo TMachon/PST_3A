@@ -1,0 +1,164 @@
+body{
+	background-image: url(../../../../ressources/images/white.jpg);
+}
+
+.contenu_body {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.composant_contenu_body {
+ 	position: center;
+}
+
+img{
+	background-color: white;
+	margin: 2px;
+	border-radius: 20px;
+}
+
+img.image_accueil{
+	width:9%;
+	height:9%;
+}
+
+img.footer_esiea_logo{
+	width:18%;
+	height:18%;
+	margin-bottom: -10px;
+}
+
+th, td{
+	text-align: center;
+}
+
+#formulaire{
+	width: 50%;
+	margin : 0 auto;
+	margin-top : 30px;
+	background-color: white;
+	border-radius: 0.5em;
+	border: 0.5px solid cyan;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
+
+.btn, .btn-flat{
+	text-align: center;
+	display: block;
+  	margin : 1% auto;
+}
+
+#btnAccueil, .btnCreate{
+	margin-top: 4%;
+}
+
+table{
+	background-color: white;
+}
+
+#liste_laterales_cat{
+	border: 2px solid black;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 12em;
+}
+
+.dashboard{
+	border: 2px solid black;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#liste_laterales_latest{
+	border: 2px solid black;
+	margin-right:5px;
+	margin-top:5px;
+	width: 15em;
+}
+
+.composant_contenu_body_dashboard{
+	margin: 0 auto;
+	width: 750px;
+}
+
+fieldset{
+	background-color: white;
+	border-style: solid black;
+	border-width: 2px;
+	margin: 0 auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	width: 750px;
+}
+
+legend{
+	font-style: bold;
+	font-size: 24px;
+}
+
+.image_de_profil{
+	margin-top: 5%;
+}
+
+.input-field{
+	margin-bottom: -2em;
+}
+
+#previewAvatar{
+	width: 0;
+	height: 0;
+	margin-top: 2%;
+	margin-bottom: -2%;
+}
+
+.modal{
+	text-align: left;
+}
+
+.corps{
+	margin-top: 2%;
+	background-color: white;
+	border: 1px solid black;
+	padding: 2%;
+	width: 65%;
+	height: 100%;
+}
+
+.vider_bdd{
+	width:70%;
+	height: 70%;
+	margin: 0 auto;
+}
+
+.boutonVider{
+	width: 40%;
+	height: 40%;
+	margin: 2% auto;
+}
+
+a:hover,a:focus{
+     background:rgba(0,0,0,.4);
+     box-shadow:0 1px 0 rgba(255,255,255,.4);
+}
+
+a:hover span, a:focus span{
+     transform:scale(1) rotate(0);
+     transition:all .25s;   
+     color: white;   
+}
+
+a span{
+	position:absolute;
+	margin-top:23px;
+	margin-left:-35px;
+	color:#09c;
+	background:rgba(0,0,0,.9);
+	padding:15px;
+	border-radius:3px;
+	transform:scale(0) rotate(-35deg);
+}
