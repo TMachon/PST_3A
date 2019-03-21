@@ -54,11 +54,23 @@
 			$this->id_SURFER = mysqli_insert_id($co);
 		}
 
+		public function modifInfosPersos($nom, $prenom, $email){
+			include('bd.php'); // accès à la BD MySQL
+
+			// modification des infos persos
+			$resultModifInfosPersos = mysqli_query($co, "UPDATE SURFER SET firstname = '".$prenom."', lastname = '".$nom."', mail = '".$email."'
+				WHERE id_SURFER = '".$_SESSION['id_SURFER']."'") or die("Impossible d'effectuer la modif des infos persos dans SURFER.");
+
+			$_SESSION['mail'] = $email;
+			$_SESSION['prenom'] = $prenom;
+			$_SESSION['nom'] = $nom;
+		}
+
 		public function modifPassword($NewPassword){
 			include('bd.php'); // accès à la BD MySQL
 
 			// modification du mot de passe
-			$resultModifPassword = mysqli_query($co, "UPDATE SURFER SET password = '".$NewPassword."' WHERE mail = '".$_SESSION['mail']."'") or die("Impossible d'effectuer la modif du password dans SURFER.");
+			$resultModifPassword = mysqli_query($co, "UPDATE SURFER SET password = '".$NewPassword."' WHERE id_SURFER = '".$_SESSION['id_SURFER']."'") or die("Impossible d'effectuer la modif du password dans SURFER.");
 		}
 	}
 ?>

@@ -162,3 +162,7 @@ a span{
 	border-radius:3px;
 	transform:scale(0) rotate(-35deg);
 }
+
+.title_no_connection{
+	text-align: center;
+}

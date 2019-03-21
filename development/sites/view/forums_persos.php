@@ -10,7 +10,9 @@
 	</head>
 	<body>
 
-		<?php include('../model/membre.php'); include('components/banner_accueil.php'); ?>
+		<?php include('../model/membre.php'); include('components/banner_accueil.php');
+
+		if (!empty($_SESSION)){ ?>
 
 		<div class="contenu_body">
 
@@ -49,9 +51,10 @@
 			</div>
 
 			<div class="composant_contenu_body" id="categories"></div>
-			
 		</div>
 
+		<?php }
+				else echo "<h3 class='title_no_connection'>Vous n'êtes pas connecté.</h3>"; ?>
 	</body>
 
 	<?php include 'components/footer.html'; ?>

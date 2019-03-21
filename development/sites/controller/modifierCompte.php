@@ -1,31 +1,16 @@
-<?php include('../modeles/bd.php'); session_start();
-	
-	if(!empty($_POST['selectcategorie']) && !empty($_POST['nomEModif']) && !empty($_POST['prenomEModif']) && 
-	   !empty($_POST['soldeEModif']) && !empty($_POST['loginPModif']) && !empty($_POST['mdpassePModif']) &&
-	   !empty($_POST['nomPModif'])){
-		//header('Location:../vues/afficheCompteEnfant.php');
+<?php
+	include('../model/bd.php');
+	include('../model/membre.php');
 
-		//recherche de la catégorie en fonction du select
+	if( !empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail'])){
+		header('Location:../view/infos_persos.php');
 
-		$resulCat = mysqli_query($co, "SELECT idcategorie FROM categorie WHERE nomcategorie = '".$_POST['selectcategorie']."'") or die("Impossible d'exécuter la requête de categorie.");
+		$nom = addslashes(htmlspecialchars($_POST['nom']));			
+		$prenom = addslashes(htmlspecialchars($_POST['prenom']));
+		$email = addslashes(htmlspecialchars($_POST['mail']));
 
-		$tableau = mysqli_fetch_array($resulCat);
-		$cat = $tableau['idcategorie'];	
-
-		//mise à jour
-		$resultMAJE = mysqli_query($co, "UPDATE enfant
-		SET nomenfant = '".$_POST['nomEModif']."', prenomenfant = '".$_POST['prenomEModif']."',
-		idcategorie = '".$cat."' WHERE idenfant = '".$_SESSION['idenfant']."'") or die("Impossible d'exécuter la requête de MAJE.");
-
-		$resultMAJP = mysqli_query($co, "UPDATE parent
-		SET nomparent = '".$_POST['nomPModif']."', login = '".$_POST['loginPModif']."',
-		motdepasse = '".$_POST['mdpassePModif']."'
-		WHERE idparent = '".$_SESSION['idparent']."'") or die("Impossible d'exécuter la requête de MAJP.");
-
-		$resultMAJCE = mysqli_query($co, "UPDATE compteenfant
-		SET soldeinitial = (soldeinitial + '".$_POST['soldeEModif']."')
-		WHERE idenfant = '".$_SESSION['idenfant']."'") or die("Impossible d'exécuter la requête de MAJCE.");
-
-	}else header('Location:../vues/pageModifierCompte.php');
-	
+		$Membre = new Surfer($_SESSION['mail'], $_SESSION['prenom'], $_SESSION['nom']);
+		$Membre->modifInfosPersos($nom, $prenom, $email);
+		
+	}else header('Location:../view/infos_persos.php');
 ?>
