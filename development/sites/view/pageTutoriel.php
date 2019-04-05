@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="composant_contenu_body">
-				<?php
+				<?php 
 
 
 
@@ -29,7 +29,9 @@
 
 
 
-					echo 'ID TUTORIAL  : '.$_GET['id_tuto'];
+
+						echo $_GET['id_tuto'];
+
 
 
 
