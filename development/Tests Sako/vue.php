@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Vue 2</title>
+	<title>Vue 1</title>
 </head>
 <body>
+
 	<?php
 
 		// On reprend la session en cours
@@ -19,6 +20,9 @@
 		}
 	?>
 
-	<p>Bienvenue !</p>
+	<form action="controlleur.php" method="POST">
+		<input type="text" name="text1">
+		<button>Test</button>
+	</form>
 </body>
 </html>

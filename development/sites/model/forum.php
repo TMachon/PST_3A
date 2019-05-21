@@ -20,9 +20,11 @@
 		public function creation($id_SURFER){
 			include('bd.php');
 
-			//insertion du nouveau forum
-			$resultInsertForum = mysqli_query($co, "INSERT INTO FORUM (id_SURFER, contents, dateCreation, title_forum) VALUES
-			(".$_SESSION['id_SURFER'].", '".$this->contents."', '".date("Y-m-d H:i:s")."', '".$this->title_forum."')") or die("Impossible d'effectuer l'insertion dans compte SURFER.");
+			$stmt = $co->prepare('INSERT INTO FORUM (id_SURFER, contents, dateCreation, title_forum)
+				VALUES (?, ?, ?, ?)');
+			$stmt->bind_param('dsss', $_SESSION['id_SURFER'], $this->contents, date("Y-m-d H:i:s"), $this->title_forum);
+			$stmt->execute();
+			$resultInsertForum = $stmt->get_result();
 		}
 	}
 ?>
