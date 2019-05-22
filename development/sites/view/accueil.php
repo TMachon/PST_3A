@@ -26,7 +26,7 @@
 
 					<?php 
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes, dislikes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY ORDER BY dateCreation DESC LIMIT 4') or die("Impossible d'exécuter la requête des derniers tutos.");
+						$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY ORDER BY dateCreation DESC LIMIT 4') or die("Impossible d'exécuter la requête des derniers tutos.");
 						
 						echo "<table>
 						    <tr>
@@ -35,7 +35,6 @@
 								<th>Créateur</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Dislikes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
@@ -44,7 +43,6 @@
 									<td>".$row['firstname']." ".$row['lastname']."</td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
-									<td>".$row['dislikes']."</td>
 								</tr>";
 							}
 						echo "</table>";	
@@ -57,7 +55,7 @@
 
 					<?php
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes, dislikes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY ORDER BY likes DESC LIMIT 4') or die("Impossible d'exécuter la requête des tutos les plus aimés.");
+						$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY ORDER BY likes DESC LIMIT 4') or die("Impossible d'exécuter la requête des tutos les plus aimés.");
 						
 						echo "<table>
 					    <tr>
@@ -66,7 +64,6 @@
 							<th>Créateur</th>
 							<th>Création</th>
 							<th>Likes</th>
-							<th>Dislikes</th>
 					    </tr>";
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo "<tr>
@@ -75,7 +72,6 @@
 								<td>".$row['firstname']." ".$row['lastname']."</td>
 								<td>".$row['dateCreation']."</td>
 								<td>".$row['likes']."</td>
-								<td>".$row['dislikes']."</td>
 							</tr>";
 						}
 						echo "</table>";	
@@ -88,7 +84,7 @@
 
 					<?php
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes, dislikes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY ORDER BY RAND(), dateCReation DESC LIMIT 5') or die("Impossible d'exécuter la requête des tutos au hasard.");
+						$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY ORDER BY RAND(), dateCReation DESC LIMIT 5') or die("Impossible d'exécuter la requête des tutos au hasard.");
 						
 						echo "<table>
 					    <tr>
@@ -97,7 +93,6 @@
 							<th>Créateur</th>
 							<th>Création</th>
 							<th>Likes</th>
-							<th>Dislikes</th>
 					    </tr>";
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo "<tr>
@@ -106,7 +101,6 @@
 								<td>".$row['firstname']." ".$row['lastname']."</td>
 								<td>".$row['dateCreation']."</td>
 								<td>".$row['likes']."</td>
-								<td>".$row['dislikes']."</td>
 							</tr>";
 						}
 						echo "</table>";	

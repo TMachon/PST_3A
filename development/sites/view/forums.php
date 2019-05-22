@@ -32,7 +32,7 @@
 						<?php
 
 							// Requête ramenant les 4 derniers forums créés
-							$result = mysqli_query($co, 'SELECT id_FORUM, title_forum, contents, firstname, lastname, dateCreation, likes, dislikes FROM FORUM NATURAL JOIN SURFER ORDER BY dateCreation DESC LIMIT 4') or die("Impossible d'exécuter la requête des derniers forums.");
+							$result = mysqli_query($co, 'SELECT id_FORUM, title_forum, contents, firstname, lastname, dateCreation, likes FROM FORUM NATURAL JOIN SURFER ORDER BY dateCreation DESC LIMIT 4') or die("Impossible d'exécuter la requête des derniers forums.");
 							// 'or die("msg")'' permet souvent aux développeurs PHP de développer en mode debug : si une erreur survient, la page arrête
 							// de charger et affiche le message voulu passé en paramètre
 							
@@ -42,7 +42,6 @@
 								<th>Créateur</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Dislikes</th>
 						    </tr>";
 
 						    // Tranformation des résultats de la requête en tableau -> https://www.php.net/manual/fr/mysqli-result.fetch-assoc.php
@@ -56,7 +55,6 @@
 									<td>".$row['firstname']." ".$row['lastname']."</td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
-									<td>".$row['dislikes']."</td>
 								</tr>";
 							}
 							echo "</table>"; // On ferme la table HTML
@@ -69,7 +67,7 @@
 
 						<?php
 							// On récupère toutes les catégories
-							$result = mysqli_query($co, 'SELECT id_FORUM, contents, title_forum, firstname, lastname, dateCreation, likes, dislikes FROM FORUM NATURAL JOIN SURFER ORDER BY likes DESC LIMIT 4') or die("Impossible d'exécuter la requête des forums les plus aimés.");
+							$result = mysqli_query($co, 'SELECT id_FORUM, contents, title_forum, firstname, lastname, dateCreation, likes FROM FORUM NATURAL JOIN SURFER ORDER BY likes DESC LIMIT 4') or die("Impossible d'exécuter la requête des forums les plus aimés.");
 							
 							echo "<table>
 						    <tr>
@@ -77,7 +75,6 @@
 								<th>Créateur</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Dislikes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
@@ -85,7 +82,6 @@
 									<td>".$row['firstname']." ".$row['lastname']."</td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
-									<td>".$row['dislikes']."</td>
 								</tr>";
 							}
 							echo "</table>";	
@@ -98,7 +94,7 @@
 
 						<?php
 							// On récupère toutes les catégories
-							$result = mysqli_query($co, 'SELECT id_FORUM, contents, title_forum, firstname, lastname, dateCreation, likes, dislikes FROM FORUM NATURAL JOIN SURFER ORDER BY RAND(), dateCReation DESC LIMIT 5') or die("Impossible d'exécuter la requête des forums au hasard.");
+							$result = mysqli_query($co, 'SELECT id_FORUM, contents, title_forum, firstname, lastname, dateCreation, likes FROM FORUM NATURAL JOIN SURFER ORDER BY RAND(), dateCReation DESC LIMIT 5') or die("Impossible d'exécuter la requête des forums au hasard.");
 							
 							echo "<table>
 						    <tr>
@@ -106,7 +102,6 @@
 								<th>Créateur</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Dislikes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
@@ -114,7 +109,6 @@
 									<td>".$row['firstname']." ".$row['lastname']."</td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
-									<td>".$row['dislikes']."</td>
 								</tr>";
 							}
 							echo "</table>";	

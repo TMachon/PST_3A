@@ -9,11 +9,13 @@
 		$stmt->bind_param('s', htmlspecialchars($_POST['mail'])); // 's' specifies the variable type => 'string'
 		$stmt->execute();
 		$resultSurfer = $stmt->get_result();
+		$stmt->close();
 
 		$stmt = $co->prepare('SELECT mail FROM ADMIN WHERE mail = ?');
 		$stmt->bind_param('s', htmlspecialchars($_POST['mail'])); // 's' specifies the variable type => 'string'
 		$stmt->execute();
 		$resultAdmin = $stmt->get_result();
+		$stmt->close();
 
 		// on vérifie si le mail existe déjà ou pas
 		if (mysqli_num_rows($resultSurfer) == 0 && mysqli_num_rows($resultAdmin) == 0) $exist = false;

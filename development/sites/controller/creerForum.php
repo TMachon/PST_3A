@@ -10,6 +10,7 @@
 		$stmt->bind_param('s', htmlspecialchars($_POST['title_forum_create'])); // 's' specifies the variable type => 'string'
 		$stmt->execute();
 		$resultTitle = $stmt->get_result();
+		$stmt->close();
 
 		if (mysqli_num_rows($resultTitle) == 0){
 			header('Location:../view/forumCree.php');

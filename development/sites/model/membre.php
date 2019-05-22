@@ -3,7 +3,6 @@
 
 	class Surfer{
 		private $connexion; // connexion à la BD MySQL du serveur
-
 		private $mail;
 		private $prenom;
 		private $nom;
@@ -53,6 +52,7 @@
 			$stmt->bind_param('ssssd', $this->mail, $password, $this->nom, $this->prenom, $idAvatar);
 			$stmt->execute();
 			$resultInsertSurfer = $stmt->get_result();
+			$stmt->close();
 
 			$this->id_SURFER = mysqli_insert_id($co);
 		}
@@ -64,6 +64,7 @@
 			$stmt->bind_param('sssd', $prenom, $nom, $email, $_SESSION['id_SURFER']);
 			$stmt->execute();
 			$resultModifInfosPersos = $stmt->get_result();
+			$stmt->close();
 			
 			$_SESSION['mail'] = $email;
 			$_SESSION['prenom'] = $prenom;
@@ -77,6 +78,7 @@
 			$stmt->bind_param('sd', $NewPassword, $_SESSION['id_SURFER']);
 			$stmt->execute();
 			$resultModifPassword = $stmt->get_result();
+			$stmt->close();
 		}
 	}
 ?>

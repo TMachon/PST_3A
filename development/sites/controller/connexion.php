@@ -9,6 +9,7 @@
 		$stmt->bind_param('ss', htmlspecialchars($_POST['mail']), htmlspecialchars($_POST['password'])); // 's' specifies the variable type => 'string'
 		$stmt->execute();
 		$resultSurfer = $stmt->get_result();
+		$stmt->close();
 
 		if (mysqli_num_rows($resultSurfer) == 0)
 			header('Location:../view/pageConnexion.php');
