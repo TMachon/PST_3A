@@ -33,15 +33,15 @@
 						<div class="row">
 							<div class="input-field col s12">
 								<i class="material-icons prefix">title</i>
-								<input name="title_forum_create" class="validate" type="text">
-								<label>Titre du forum</label>
+								<input id="title_forum" name="title_forum_create" class="validate" type="text">
+								<label for="title_forum">Titre du forum</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
 								<i class="material-icons prefix">format_quote</i>
-								<textarea name="content_forum_create" class="validate materialize-textarea"></textarea>
-								<label>Votre question, sujet, débat, ...</label>
+								<textarea id="area_content" name="content_forum_create" class="validate materialize-textarea"></textarea>
+								<label for="area_content">Votre question, sujet, débat, ...</label>
 							</div>
 						</div>
 

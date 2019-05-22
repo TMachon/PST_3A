@@ -21,26 +21,26 @@
 				<div class="row">
 					<div class="input-field col s6">
 						<i class="material-icons prefix">account_box</i>
-						<input name="prenom" type="text" class="validate">
-						<label>Prénom</label>
+						<input id="first_name" name="prenom" type="text" class="validate">
+						<label for="first_name">Prénom</label>
 					</div>
 					<div class="input-field col s6">
-						<input name="nom" type="text" class="validate">
-						<label>Nom de famille</label>
+						<input id="last_name" name="nom" type="text" class="validate">
+						<label for="last_name">Nom de famille</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">email</i>
-						<input type="email" class="validate" name="mail">
-						<label>Email</label>
+						<input id="email_inline" type="email" class="validate" name="mail">
+						<label for="email_inline">Email</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">security</i>
-						<input type="password" class="validate" name="password">
-						<label>Password</label>
+						<input id="password" type="password" class="validate" name="password">
+						<label for="password">Password</label>
 					</div>
 				</div>
 				<div class="row image_de_profil center">
