@@ -10,11 +10,15 @@
 	</head>
 	<body>
 
-		<?php include('../model/membre.php'); include('components/banner_accueil.php'); // On inclut la bannière?>
+		<?php include('../model/membre.php'); include('components/banner_accueil.php'); // On inclut la bannière
+
+		if (!empty($_SESSION)){ ?>
 
 		<div class="composant_contenu_body_dashboard">
 			<?php include 'components/dashboard.php'; ?>
 		</div>
+
+	<?php }else echo "<h3 class='title_no_connection'>Vous n'êtes pas connecté.</h3>"; ?>
 
 	</body>
 

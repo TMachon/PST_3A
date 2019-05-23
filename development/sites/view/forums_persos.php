@@ -10,7 +10,9 @@
 	</head>
 	<body>
 
-		<?php include('../model/membre.php'); include('components/banner_accueil.php'); ?>
+		<?php include('../model/membre.php'); include('components/banner_accueil.php');
+
+		if (!empty($_SESSION)){ ?>
 
 		<div class="contenu_body">
 
@@ -25,21 +27,19 @@
 
 					<?php
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, dateCreation, likes, dislikes FROM FORUM NATURAL JOIN SURFER WHERE id_SURFER = '".$_SESSION['id_SURFER']."' ORDER BY dateCreation DESC") or die("Impossible d'exécuter la requête des forums persos.");
+						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, dateCreation, likes FROM FORUM NATURAL JOIN SURFER WHERE id_SURFER = '".$_SESSION['id_SURFER']."' ORDER BY dateCreation DESC") or die("Impossible d'exécuter la requête des forums persos.");
 						
 						echo "<table>
 						    <tr>
 								<th>Forums</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Dislikes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."</a></td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
-									<td>".$row['dislikes']."</td>
 								</tr>";
 							}
 						echo "</table>";	
@@ -49,9 +49,10 @@
 			</div>
 
 			<div class="composant_contenu_body" id="categories"></div>
-			
 		</div>
 
+		<?php }
+				else echo "<h3 class='title_no_connection'>Vous n'êtes pas connecté.</h3>"; ?>
 	</body>
 
 	<?php include 'components/footer.html'; ?>

@@ -5,17 +5,20 @@
 	if(!empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['nom']) && !empty($_POST['prenom'])
 		&& preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,3}$#i', $_POST['mail'])){
 
-		$mail = addslashes(htmlspecialchars($_POST['mail']));			
-		$password = $_POST['password'];
-		$nom = htmlspecialchars($_POST['nom']);
-		$prenom = htmlspecialchars($_POST['prenom']);
+		$stmt = $co->prepare('SELECT mail FROM SURFER WHERE mail = ?');
+		$stmt->bind_param('s', htmlspecialchars($_POST['mail'])); // 's' specifies the variable type => 'string'
+		$stmt->execute();
+		$resultSurfer = $stmt->get_result();
+		$stmt->close();
 
-		// on verirife l'unicité du nouveau membre
-		$resultSurfer = mysqli_query($co, "SELECT mail FROM SURFER WHERE mail = '".$mail."' AND password = '".$password."'") or die("Impossible d'exécuter la requête de vérification inscription SURFER.");
-		$resultAdmin = mysqli_query($co, "SELECT mail FROM ADMIN WHERE mail = '".$mail."' AND password = '".$password."'") or die("Impossible d'exécuter la requête de vérification inscription ADMIN.");
+		$stmt = $co->prepare('SELECT mail FROM ADMIN WHERE mail = ?');
+		$stmt->bind_param('s', htmlspecialchars($_POST['mail'])); // 's' specifies the variable type => 'string'
+		$stmt->execute();
+		$resultAdmin = $stmt->get_result();
+		$stmt->close();
 
-		// on vérifie si l'utilisateur existe déjà ou pas
-		if (mysqli_num_rows($resultSurfer) == 0) $exist = false;
+		// on vérifie si le mail existe déjà ou pas
+		if (mysqli_num_rows($resultSurfer) == 0 && mysqli_num_rows($resultAdmin) == 0) $exist = false;
 		else $exist = true;
 
 		// traitement en fonction de l'existence
@@ -34,8 +37,8 @@
 		        $idAvatar = mysqli_insert_id($co);
 		    }
 
-			$newMembre = new Surfer($mail, $prenom, $nom);
-			$newMembre->inscription($password, $idAvatar);
+			$newMembre = new Surfer(htmlspecialchars($_POST['mail']), htmlspecialchars($_POST['prenom']), htmlspecialchars($_POST['nom']));
+			$newMembre->inscription(htmlspecialchars($_POST['password']), $idAvatar);
 			$newMembre->connexion();
 			
 		}else header('Location:../view/pageInscription.php');

@@ -10,7 +10,9 @@
 	</head>
 	<body>
 
-		<?php include('../model/membre.php'); include('components/banner_accueil.php'); ?>
+		<?php include('../model/membre.php'); include('components/banner_accueil.php');
+
+		if (!empty($_SESSION)){ ?>
 
 		<div class="contenu_body">
 
@@ -25,7 +27,7 @@
 
 					<?php
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, "SELECT id_TUTORIAL, title_tutorial, label, dateCreation, likes, dislikes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY WHERE id_SURFER = '".$_SESSION['id_SURFER']."' ORDER BY dateCreation DESC") or die("Impossible d'exécuter la requête des tutoriels persos.");
+						$result = mysqli_query($co, "SELECT id_TUTORIAL, title_tutorial, label, dateCreation, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY WHERE id_SURFER = '".$_SESSION['id_SURFER']."' ORDER BY dateCreation DESC") or die("Impossible d'exécuter la requête des tutoriels persos.");
 						
 						echo "<table>
 						    <tr>
@@ -33,7 +35,6 @@
 								<th>Catégorie</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Dislikes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
@@ -41,7 +42,6 @@
 									<td>".$row['label']."</td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
-									<td>".$row['dislikes']."</td>
 								</tr>";
 							}
 						echo "</table>";	
@@ -53,6 +53,9 @@
 			<div class="composant_contenu_body" id="categories"></div>
 
 		</div>
+
+		<?php }
+				else echo "<h3 class='title_no_connection'>Vous n'êtes pas connecté.</h3>"; ?>
 
 	</body>
 

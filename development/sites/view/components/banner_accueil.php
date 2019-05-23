@@ -20,23 +20,41 @@
 </ul>
 <nav class="blue lighten-1">
 	<div class="nav-wrapper">
-		<a href="accueil.php" class="brand-logo center"><img width="60" height="60" src="../../../ressources/images/logo2.png" alt="logo"/> </a>
+		<a href="accueil.php" class="brand-logo center">
+			<img width="60" height="60" src="../../../ressources/images/logo2.png" alt="logo"/>
+		</a>
+
 		<ul class="left hide-on-med-and-down">
 			<li class="<?php
 							if(end(explode('/', $_SERVER['REQUEST_URI'])) == 'accueil.php') echo 'active';
-						?>"><a href="accueil.php">Tutoriels</a></li>
+						?>"><a href="accueil.php">Tutoriels</a>
+			</li>
 			<li class="<?php
 							if(end(explode('/', $_SERVER['REQUEST_URI'])) == 'forums.php') echo 'active';
-						?>"><a href="forums.php">Forums</a></li>
+						?>"><a href="forums.php">Forums</a>
+			</li>
 		</ul>
+
 		<ul class="right hide-on-med-and-down">
+			<li>
+				<nav class="blue lighten-2 search_nav">
+					<div class="nav-wrapper">
+						<form method="GET" action="search.php">
+							<div class="input-field">
+								<input type="search" placeholder="Rechercher" name="search">
+								<label class="label-icon"><i class="material-icons">search</i></label>
+							</div>
+						</form>
+					</div>
+				</nav>
+			</li>
 			<!-- Dropdown Trigger -->
 			<li>
 				<a class="dropdown-trigger" href="#!" data-target="dropdown1">
 
 					<?php include('../model/bd.php');
 					    if (isset($_SESSION['mail'])) {
-					        $sql = "SELECT picture FROM IMAGEACCOUNT NATURAL JOIN SURFER WHERE mail='".$_SESSION['mail']."'";
+					        $sql = "SELECT picture FROM IMAGEACCOUNT NATURAL JOIN SURFER WHERE id_SURFER='".$_SESSION['id_SURFER']."'";
 					        $query = mysqli_query($co, $sql);
 					        $line = mysqli_fetch_assoc($query);
 					        echo "<div class=\"chip blue darken-4 white-text\">

@@ -18,15 +18,15 @@
 					<div class="row">
 						<div class="input-field col s12">
 							<i class="material-icons prefix">email</i>
-							<input type="email" class="validate" name="mail">
-							<label>Email</label>
+							<input id="email_inline" type="email" class="validate" name="mail">
+							<label for="email_inline">Email</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
 							<i class="material-icons prefix">security</i>
-							<input type="password" class="validate" name="password">
-							<label>Password</label>
+							<input id="password" type="password" class="validate" name="password">
+							<label for="password">Password</label>
 						</div>
 					</div>
 				</div>

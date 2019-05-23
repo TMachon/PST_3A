@@ -19,38 +19,36 @@
 		<div id="formulaire">
 			<form enctype="multipart/form-data" action="../controller/inscription.php" method="post">		
 				<div class="row">
-					<div class="row">
-						<div class="input-field col s6">
-							<i class="material-icons prefix">account_box</i>
-							<input name="prenom" type="text" class="validate">
-							<label>Prénom</label>
-						</div>
-						<div class="input-field col s6">
-							<input name="nom" type="text" class="validate">
-							<label>Nom de famille</label>
-						</div>
+					<div class="input-field col s6">
+						<i class="material-icons prefix">account_box</i>
+						<input id="first_name" name="prenom" type="text" class="validate">
+						<label for="first_name">Prénom</label>
 					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<i class="material-icons prefix">email</i>
-							<input type="email" class="validate" name="mail">
-							<label>Email</label>
-						</div>
+					<div class="input-field col s6">
+						<input id="last_name" name="nom" type="text" class="validate">
+						<label for="last_name">Nom de famille</label>
 					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<i class="material-icons prefix">security</i>
-							<input type="password" class="validate" name="password">
-							<label>Password</label>
-						</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">email</i>
+						<input id="email_inline" type="email" class="validate" name="mail">
+						<label for="email_inline">Email</label>
 					</div>
-					<div class="row image_de_profil center">
-						<div class="card teal darken-4">
-							<div class="card-content white-text">
-								<span class="card-title">Choisissez votre avatar<font size="3"> (optionnel)</font></span>
-								<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
-    							<br><img id="previewAvatar" src="#"/>
-							</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">security</i>
+						<input id="password" type="password" class="validate" name="password">
+						<label for="password">Password</label>
+					</div>
+				</div>
+				<div class="row image_de_profil center">
+					<div class="card teal darken-4">
+						<div class="card-content white-text">
+							<span class="card-title">Choisissez votre avatar<font size="3"> (optionnel)</font></span>
+							<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+							<br><img id="previewAvatar" src="#"/>
 						</div>
 					</div>
 				</div>

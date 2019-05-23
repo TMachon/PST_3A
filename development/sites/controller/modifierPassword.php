@@ -5,12 +5,10 @@
 	if( !empty($_POST['ActualPassword']) && !empty($_POST['NewPassword']) && !empty($_POST['ConfirmedNewPassword'])
 		&& $_POST['NewPassword'] == $_POST['ConfirmedNewPassword']){
 
-		$ActualPassword = addslashes(htmlspecialchars($_POST['ActualPassword']));			
-		$NewPassword = $_POST['NewPassword'];
-		$ConfirmedNewPassword = htmlspecialchars($_POST['ConfirmedNewPassword']);
-
-		// on verirife que le mot de passe correspond bien à celui associé au mail dans la session
-		$resultSurfer = mysqli_query($co, "SELECT mail FROM SURFER WHERE mail = '".$_SESSION['mail']."' AND password = '".$ActualPassword."'") or die("Impossible d'exécuter la requête de vérification modif password.");
+		$stmt = $co->prepare('SELECT mail FROM SURFER WHERE mail = ? AND password = ?');
+		$stmt->bind_param('ss', htmlspecialchars($_SESSION['mail']), htmlspecialchars($_POST['ActualPassword']));
+		$stmt->execute();
+		$resultSurfer = $stmt->get_result();
 
 		// on vérifie que le mot de passe est correct
 		if (mysqli_num_rows($resultSurfer) == 0) $exist = false;//
@@ -20,7 +18,7 @@
 			header('Location:../view/infos_persos.php');
 
 			$Membre = new Surfer($_SESSION['mail'], $_SESSION['prenom'], $_SESSION['nom']);
-			$Membre->modifPassword($NewPassword);
+			$Membre->modifPassword(htmlspecialchars($_POST['NewPassword']));
 			
 		}else header('Location:../view/infos_persos.php');
 		

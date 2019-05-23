@@ -3,7 +3,6 @@
 
 	class Surfer{
 		private $connexion; // connexion à la BD MySQL du serveur
-
 		private $mail;
 		private $prenom;
 		private $nom;
@@ -11,10 +10,12 @@
 		private $statutAdmin;
 
 		public function __construct(){
-			include('bd.php'); // accès à la BD MySQL	
+			include('bd.php'); // accès à la BD MySQL
 
-	    	// permet aux administrateurs d'accéder à d'autres fonctionnalités
-    		$resultAdmin = mysqli_query($co, "SELECT mail FROM ADMIN WHERE mail = '".func_get_arg(0)."'") or die("Impossible d'exécuter la requête de verification de l'admin.");
+			$stmt = $co->prepare('SELECT mail FROM ADMIN WHERE mail = ?');
+			$stmt->bind_param('s', func_get_arg(0));
+			$stmt->execute();
+			$resultAdmin = $stmt->get_result();
 
 			if (mysqli_num_rows($resultAdmin) == 0) $this->statutAdmin = false;
 			else $this->statutAdmin = true;
@@ -47,18 +48,37 @@
 		public function inscription($password, $idAvatar){
 			include('bd.php'); // accès à la BD MySQL
 
-			//insertion du nouveau compte surfer
-			$resultInsertSurfer = mysqli_query($co, "INSERT INTO SURFER (mail, password, lastname, firstname, id_IMAGE_ACCOUNT) VALUES
-			('".$this->mail."','".$password."','".$this->nom."','".$this->prenom."', ".$idAvatar.")") or die("Impossible d'effectuer l'insertion dans compte SURFER.");
+			$stmt = $co->prepare('INSERT INTO SURFER (mail, password, lastname, firstname, id_IMAGE_ACCOUNT) VALUES (?, ?, ?, ?, ?)');
+			$stmt->bind_param('ssssd', $this->mail, $password, $this->nom, $this->prenom, $idAvatar);
+			$stmt->execute();
+			$resultInsertSurfer = $stmt->get_result();
+			$stmt->close();
 
 			$this->id_SURFER = mysqli_insert_id($co);
+		}
+
+		public function modifInfosPersos($nom, $prenom, $email){
+			include('bd.php'); // accès à la BD MySQL
+
+			$stmt = $co->prepare('UPDATE SURFER SET firstname = ?, lastname = ?, mail = ? WHERE id_SURFER = ?');
+			$stmt->bind_param('sssd', $prenom, $nom, $email, $_SESSION['id_SURFER']);
+			$stmt->execute();
+			$resultModifInfosPersos = $stmt->get_result();
+			$stmt->close();
+			
+			$_SESSION['mail'] = $email;
+			$_SESSION['prenom'] = $prenom;
+			$_SESSION['nom'] = $nom;
 		}
 
 		public function modifPassword($NewPassword){
 			include('bd.php'); // accès à la BD MySQL
 
-			// modification du mot de passe
-			$resultModifPassword = mysqli_query($co, "UPDATE SURFER SET password = '".$NewPassword."' WHERE mail = '".$_SESSION['mail']."'") or die("Impossible d'effectuer la modif du password dans SURFER.");
+			$stmt = $co->prepare('UPDATE SURFER SET password = ? WHERE id_SURFER = ?');
+			$stmt->bind_param('sd', $NewPassword, $_SESSION['id_SURFER']);
+			$stmt->execute();
+			$resultModifPassword = $stmt->get_result();
+			$stmt->close();
 		}
 	}
 ?>

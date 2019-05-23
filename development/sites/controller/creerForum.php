@@ -6,16 +6,16 @@
 
 	if(!empty($_POST['title_forum_create']) && !empty($_POST['content_forum_create'])){
 
-		$title_forum_create = addslashes(htmlspecialchars($_POST['title_forum_create']));
-		$content_forum_create = addslashes(htmlspecialchars($_POST['content_forum_create']));
-
-		// deux titres egaux ne sont pas autorisés
-		$resultTitle = mysqli_query($co, "SELECT title_forum FROM FORUM WHERE title_forum = '".$title_forum_create."'") or die("Impossible d'exécuter la requête de verification du titre forum.");
+		$stmt = $co->prepare('SELECT title_forum FROM FORUM WHERE title_forum = ?');
+		$stmt->bind_param('s', htmlspecialchars($_POST['title_forum_create'])); // 's' specifies the variable type => 'string'
+		$stmt->execute();
+		$resultTitle = $stmt->get_result();
+		$stmt->close();
 
 		if (mysqli_num_rows($resultTitle) == 0){
 			header('Location:../view/forumCree.php');
 
-			$newForum = new Forum($title_forum_create, $content_forum_create);
+			$newForum = new Forum(htmlspecialchars($_POST['title_forum_create']), htmlspecialchars($_POST['content_forum_create']));
 			$newForum->creation($_SESSION['id_SURFER']);
 		}
 		else{
