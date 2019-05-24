@@ -28,7 +28,7 @@
 							or die("Impossible d'exécuter la requête de recherche de tuto.");
 
 						if (mysqli_num_rows($result) != 0){
-							echo "<fieldset><legend>Tutoriels contenant <b><i>\"".$_GET["search"]."\"</i></b></legend>
+							echo "<fieldset><legend>Tutoriels en relation avec <b><i>\"".$_GET["search"]."\"</i></b></legend>
 							<table>
 							    <tr>
 									<th>Tutoriels</th>
@@ -48,7 +48,7 @@
 									</tr>";
 								}
 							echo "</table></fieldset>";
-						}
+						} else echo "<fieldset><legend>Il n'y a pas de tutoriels en relation avec \"<i><b>".$_GET["search"]."</b></i>\".</legend></fieldset>";
 					?>
 
 					<?php
@@ -56,7 +56,7 @@
 							or die("Impossible d'exécuter la requête de recherche de forums.");
 
 						if (mysqli_num_rows($result) != 0){
-							echo "<fieldset><legend>Forums contenant <b><i>\"".$_GET["search"]."\"</i></b></legend>
+							echo "<fieldset><legend>Forums en relation avec <b><i>\"".$_GET["search"]."\"</i></b></legend>
 							<table>
 							    <tr>
 									<th>Tutoriels</th>
@@ -74,7 +74,7 @@
 									</tr>";
 								}
 							echo "</table></fieldset>";
-						}
+						} else echo "<fieldset><legend>Il n'y a pas de forums en relation avec \"<i><b>".$_GET["search"]."</b></i>\".</legend></fieldset>";
 					?>
 			</div>
 
