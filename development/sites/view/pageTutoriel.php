@@ -21,24 +21,8 @@
 			</div>
 
 			<div class="composant_contenu_body">
-				<?php 
-
-
-
-
-
-
-
-
-						echo $_GET['id_tuto'];
-
-
-
-
-
-
-
-
+				<?php
+					echo 'ID TUTORIAL  : '.$_GET['id_tuto'];
 				?>
 			</div>
 
