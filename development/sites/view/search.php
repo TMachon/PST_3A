@@ -24,7 +24,7 @@
 
 					<?php 
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, "SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY WHERE title_tutorial LIKE '%".$_GET['search']."%' ORDER BY dateCreation DESC LIMIT 4")
+						$result = mysqli_query($co, "SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY WHERE title_tutorial LIKE \"%".$_GET['search']."%\" ORDER BY dateCreation DESC LIMIT 4")
 							or die("Impossible d'exécuter la requête de recherche de tuto.");
 
 						if (mysqli_num_rows($result) != 0){
@@ -52,7 +52,7 @@
 					?>
 
 					<?php
-						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, firstname, lastname, dateCreation, likes FROM FORUM NATURAL JOIN SURFER WHERE title_forum LIKE '%".$_GET['search']."%' ORDER BY likes DESC LIMIT 4")
+						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, firstname, lastname, dateCreation, likes FROM FORUM NATURAL JOIN SURFER WHERE title_forum LIKE \"%".$_GET['search']."%\" ORDER BY likes DESC LIMIT 4")
 							or die("Impossible d'exécuter la requête de recherche de forums.");
 
 						if (mysqli_num_rows($result) != 0){

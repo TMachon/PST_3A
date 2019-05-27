@@ -101,6 +101,7 @@ fieldset{
 	margin-top: 5%;
 	margin-bottom: 5%;
 	width: 750px;
+	border-radius: 15px;
 }
 
 legend{

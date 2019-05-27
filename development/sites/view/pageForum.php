@@ -26,8 +26,8 @@
 					$result = mysqli_query($co, "SELECT * FROM FORUM WHERE id_FORUM = $id_for");
 					$infos_forum = mysqli_fetch_assoc($result);
 
-					$commentsrequest = mysqli_query($co, "SELECT firstname, lastname, contentsAF, dateResponse_F 
-					FROM ANSWER_FORUM NATURAL JOIN SURFER WHERE id_FORUM = $id_for ORDER BY dateResponse_F");
+					$commentsrequest = mysqli_query($co, "SELECT picture, firstname, lastname, contentsAF, dateResponse_F 
+					FROM ANSWER_FORUM NATURAL JOIN SURFER NATURAL JOIN IMAGEACCOUNT WHERE id_FORUM = $id_for ORDER BY dateResponse_F");
 
 					$date = substr($infos_forum['dateCreation'],0,10);
 					$heure = substr($infos_forum['dateCreation'],11,18);
@@ -72,12 +72,15 @@
 
 							<fieldset>
 								<?php
-									$requestid = "SELECT firstname, lastname FROM SURFER WHERE id_SURFER = " . $infos_forum['id_SURFER'];
+									$requestid = "SELECT firstname, lastname, picture FROM SURFER NATURAL JOIN IMAGEACCOUNT WHERE id_SURFER = " . $infos_forum['id_SURFER'];
 									$resultid = mysqli_query($co, $requestid);
 									$infos_id = mysqli_fetch_assoc($resultid);
 
-									echo $infos_forum['contents'].'<br><br><br>'.'Posté le '.date("d/m/Y", $date).' à '.$heure.' par '.$infos_id['firstname'].' '.
-									$infos_id['lastname'].'<br>';
+									echo "
+								    <div class=\"chip blue darken-4 white-text\">
+								    		<img src=\"data:image;base64,".$infos_id['picture']."\">";
+											echo ucfirst(strtolower($infos_id['firstname']))." ".strtoupper($infos_id['lastname']).
+									"</div><br><br>".$infos_forum['contents'].'<br><span class="new badge" data-badge-caption="">Posté le '.$date.'</span><br>';
 								?>
 							</fieldset>
 
@@ -99,8 +102,12 @@
 								while($comments = mysqli_fetch_assoc($commentsrequest)) {
 									$date_answer = substr($comments['dateResponse_F'],0,10);
 									$heure_answer = substr($comments['dateResponse_F'],11,18);
-									echo '<B>' . $comments['firstname'] . ' ' . $comments['lastname'] . '</B> : <br>' .
-									$comments['contentsAF'] . '<br> <i> Posté le ' . $date_answer . ' à ' . $heure_answer . '</i> <br> <br>';
+									echo "<div class=\"pagedegarde\">
+								    <div class=\"chip blue darken-4 white-text\">
+								    		<img src=\"data:image;base64,".$comments['picture']."\">";
+											echo ucfirst(strtolower($comments['firstname']))." ".strtoupper($comments['lastname']).
+									"</div><br><br>".$comments['contentsAF'] . '<br>
+									<span class="new badge" data-badge-caption="">Posté le '.$date_answer.'</span><br></div>';
 								}?>
 							</div>
 					</fieldset>
