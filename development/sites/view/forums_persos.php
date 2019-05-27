@@ -34,12 +34,19 @@
 								<th>Forums</th>
 								<th>Création</th>
 								<th>Likes</th>
+								<th>Supprimer</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."</a></td>
 									<td>".$row['dateCreation']."</td>
 									<td>".$row['likes']."</td>
+									<td>
+										<form method=\"post\" action=\"../controler/supprimerForum\">
+									        <input type=\"submit\" name=\"action\" value=\"Supprimer\"/>
+									        <input type=\"hidden\" name=\"id_for\" value=\"<?php echo $row['id_FORUM']; ?>\"/>
+								    	</form>
+									</td>
 								</tr>";
 							}
 						echo "</table>";	
