@@ -41,7 +41,7 @@
 									<td><a href=\"./pageTutoriel.php?id_tuto=".$row['id_TUTORIAL']."\">".$row['title_tutorial']."</a></td>
 									<td>".$row['label']."</td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".date("d/m/Y", $row['dateCreation'])."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}
@@ -70,7 +70,7 @@
 								<td><a href=\"./pageTutoriel.php?id_tuto=".$row['id_TUTORIAL']."\">".$row['title_tutorial']."</a></td>
 								<td>".$row['label']."</td>
 								<td>".$row['firstname']." ".$row['lastname']."</td>
-								<td>".$row['dateCreation']."</td>
+								<td>".date("d/m/Y", $row['dateCreation'])."</td>
 								<td>".$row['likes']."</td>
 							</tr>";
 						}
@@ -99,7 +99,7 @@
 								<td><a href=\"./pageTutoriel.php?id_tuto=".$row['id_TUTORIAL']."\">".$row['title_tutorial']."</a></td>
 								<td>".$row['label']."</td>
 								<td>".$row['firstname']." ".$row['lastname']."</td>
-								<td>".$row['dateCreation']."</td>
+								<td>".date("d/m/Y", $row['dateCreation'])."</td>
 								<td>".$row['likes']."</td>
 							</tr>";
 						}

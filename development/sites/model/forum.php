@@ -12,8 +12,32 @@
 			$this->connexion = $co;
 	    }
 
-		public function suppression(){
-			// TODO
+		public function suppression($id_FORUM){
+			include('bd.php');
+
+			$stmt = $co->prepare('DELETE FROM SUGGESTION_FORUM WHERE id_FORUM = ?');
+			$stmt->bind_param('d', $id_FORUM);
+			$stmt->execute();
+			$resultDeleteForum = $stmt->get_result();
+			$stmt->close();
+
+			$stmt = $co->prepare('DELETE FROM LIKE_FORUM WHERE id_FORUM = ?');
+			$stmt->bind_param('d', $id_FORUM);
+			$stmt->execute();
+			$resultDeleteForum = $stmt->get_result();
+			$stmt->close();
+
+			$stmt = $co->prepare('DELETE FROM ANSWER_FORUM WHERE id_FORUM = ?');
+			$stmt->bind_param('d', $id_FORUM);
+			$stmt->execute();
+			$resultDeleteForum = $stmt->get_result();
+			$stmt->close();
+
+			$stmt = $co->prepare('DELETE FROM FORUM WHERE id_FORUM = ?');
+			$stmt->bind_param('d', $id_FORUM);
+			$stmt->execute();
+			$resultDeleteForum = $stmt->get_result();
+			$stmt->close();
 		}
 
 		public function creation($id_SURFER){

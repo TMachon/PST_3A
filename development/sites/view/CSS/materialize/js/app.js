@@ -37,6 +37,14 @@ function redirectViderBDAnswerTurorial() {
     if (confirm("Voulez-vous vraiment supprimer les réponses des tutoriels ?")) window.location.href = "../controller/viderBDAnswerT.php";
 }
 
+function supprimerForum(idForum) {
+    if (confirm("Voulez-vous vraiment supprimer ce forum ?")) window.location.href = "../controller/supprimerForum.php?id_for=" + idForum;
+}
+
+function supprimerTutoriel(idTutoriel) {
+    if (confirm("Voulez-vous vraiment supprimer ce tutoriel ?")) window.location.href = "../controller/supprimerTutoriel.php?id_tuto=" + idTutoriel;
+}
+
 function redirectViderBDAnswerForum() {
     if (confirm("Voulez-vous vraiment supprimer les réponses des forums ?")) window.location.href = "../controller/viderBDAnswerF.php";
 }

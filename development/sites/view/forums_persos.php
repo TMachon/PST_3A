@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<title>CommentFaire.fr</title>
+		<title>Mes forums postés</title>
 		<meta charset="UTF-8">
 		<link rel="icon" href="../../../ressources/images/icon.ico" />
 		<link rel="stylesheet" href="CSS/materialize/css/materialize.min.css" media="screen, projection">
@@ -34,18 +34,17 @@
 								<th>Forums</th>
 								<th>Création</th>
 								<th>Likes</th>
-								<th>Supprimer</th>
+								<th></th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."</a></td>
-									<td>".$row['dateCreation']."</td>
+									<td>".date("d/m/Y", $row['dateCreation'])."</td>
 									<td>".$row['likes']."</td>
 									<td>
-										<form method=\"post\" action=\"../controler/supprimerForum\">
-									        <input type=\"submit\" name=\"action\" value=\"Supprimer\"/>
-									        <input type=\"hidden\" name=\"id_for\" value=\"<?php echo $row['id_FORUM']; ?>\"/>
-								    	</form>
+								        <button name=\"id_for\" class=\"btn waves-effect waves-light red darken-3\" type=\"submit\" value=\"".$row['id_FORUM']."\" onclick='supprimerForum(".$row['id_FORUM'].")'>
+											<i class=\"material-icons center\">delete_forever</i>
+										</button>
 									</td>
 								</tr>";
 							}

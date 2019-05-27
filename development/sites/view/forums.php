@@ -53,7 +53,7 @@
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."<span>".$row['contents']."</span></a></td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".date("d/m/Y", $row['dateCreation'])."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}
@@ -80,7 +80,7 @@
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."<span>".$row['contents']."</span></a></td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".date("d/m/Y", $row['dateCreation'])."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}
@@ -107,7 +107,7 @@
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."<span>".$row['contents']."</span></a></td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".date("d/m/Y", $row['dateCreation'])."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}

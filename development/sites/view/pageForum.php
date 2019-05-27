@@ -76,7 +76,7 @@
 									$resultid = mysqli_query($co, $requestid);
 									$infos_id = mysqli_fetch_assoc($resultid);
 
-									echo $infos_forum['contents'].'<br><br><br>'.'Posté le '.$date.' à '.$heure.' par '.$infos_id['firstname'].' '.
+									echo $infos_forum['contents'].'<br><br><br>'.'Posté le '.date("d/m/Y", $date).' à '.$heure.' par '.$infos_id['firstname'].' '.
 									$infos_id['lastname'].'<br>';
 								?>
 							</fieldset>

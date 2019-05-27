@@ -12,8 +12,32 @@
 			$this->connexion = $co;
 	    }
 
-		public function suppression(){
-			// TODO
+		public function suppression($idTutorial){
+			include('bd.php');
+
+			$stmt = $co->prepare('DELETE FROM SUGGESTION_TUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
+
+			$stmt = $co->prepare('DELETE FROM LIKE_TUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
+
+			$stmt = $co->prepare('DELETE FROM ANSWER_TUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
+
+			$stmt = $co->prepare('DELETE FROM TUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
 		}
 
 		public function creation($id_SURFER){
