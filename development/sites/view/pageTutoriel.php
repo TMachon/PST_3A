@@ -11,7 +11,7 @@
 	
 	<body>
 		<?php include('../model/membre.php'); include('components/banner_accueil.php'); // On inclut la bannière ?>
-
+		
 		<div class="contenu_body">
 
 			<div class="composant_contenu_body">
@@ -22,7 +22,47 @@
 
 			<div class="composant_contenu_body">
 				<?php
-					echo 'ID TUTORIAL  : '.$_GET['id_tuto'];
+					$id_for = $_GET['id_for'];
+					$result = mysqli_query($co, "SELECT * FROM TUTORIEL WHERE id_TUTORIEL = $id_for");
+					$infos_tutoriel = mysqli_fetch_assoc($result);
+
+					$commentsrequest = mysqli_query($co, "SELECT firstname, lastname, contentsAF, dateResponse_F 
+					FROM ANSWER_TUTORIEL NATURAL JOIN SURFER WHERE id_TUTORIEL = $id_for ORDER BY dateResponse_F");
+
+					$date = substr($infos_tutoriel['dateCreation'],0,10);
+					$heure = substr($infos_tutoriel['dateCreation'],11,18);
+				?>
+					<fieldset>
+						<legend><?php echo $infos_tutoriel['title_tutoriel']; ?></legend>	
+						<fieldset>
+							<?php echo $infos_tutoriel['contents'] . '<br><br><br>' . 'Posté le ' . $date . ' à ' . $heure . '<br>Appréciation : ' . 
+							((int)$infos_tutoriel['likes'] - (int)$infos_tutoriel['dislikes']) . ' (' . $infos_tutoriel["likes"] . ' likes, ' . 
+							$infos_tutoriel["dislikes"] . ' dislikes)<br><br>';?>
+							</fieldset>
+
+							<?php if(!empty($_SESSION)){ ?>
+								<?php $ui = '<form method="POST" action = "../controller/creerAnswerTutoriel.php?id_for=' . $id_for . '" >';
+								echo $ui;?>
+								<input type="text" id="addComment" name="addComment" placeholder="Ajouter un commentaire">
+								<button class ="btn waves-effect waves-light center" type="submit" formethod="put"> Ajouter le commentaire </button>
+								<br><br>
+							</form>
+							<?php } else { ?>
+								<form method="post" action="pageConnexion.php">
+	        						<button class="btn waves-effect waves-light center" type="submit" name="action">Se connecter pour ajouter un commentaire</button>
+								</form>
+							<?php } ?>
+						
+							<div> <?php
+								while($comments = mysqli_fetch_assoc($commentsrequest)) {
+									$date_answer = substr($comments['dateResponse_F'],0,10);
+									$heure_answer = substr($comments['dateResponse_F'],11,18);
+									echo '<B>' . $comments['firstname'] . ' ' . $comments['lastname'] . '</B> : <br>' .
+									$comments['contentsAF'] . '<br> <i> Posté le ' . $date_answer . ' à ' . $heure_answer . '</i> <br> <br>';
+								}?>
+							</div>
+					</fieldset>
+				<?php
 				?>
 			</div>
 
