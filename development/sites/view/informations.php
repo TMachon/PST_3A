@@ -23,23 +23,29 @@
 			<div class="composant_contenu_body">
 
 				<fieldset>
-					<legend>Vos alertes de suggestions pour vos forums</legend>
+					<legend>Demandes d'informations des utilisateurs</legend>
 
 					<?php
-						// On récupère toutes les catégories
-						$result = mysqli_query($co, "SELECT from_.firstname, from_.lastname, title_forum, suggestion_forum, F.id_FORUM FROM SURFER from_ NATURAL JOIN SUGGESTION_FORUM SF, SURFER to_ NATURAL JOIN FORUM F	WHERE SF.id_FORUM = F.id_FORUM AND to_.id_SURFER = ".$_SESSION['id_SURFER']." ORDER BY F.dateCreation DESC") or die("Impossible d'exécuter la requête des suggestions persos forums.");
+						$result = mysqli_query($co, "SELECT * FROM INFORMATIONS NATURAL JOIN SURFER") or die("Impossible d'exécuter la requête des demandes d'informations.");
 						
 						echo "<table>
 						    <tr>
-								<th>Suggestionneur</th>
-								<th>Forum</th>
-								<th>Suggestion</th>
+								<th>Utilisateur</th>
+								<th>Date</th>
+								<th>Demande</th>
+								<th></th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
+								$dateFormat = new DateTime($row['dateDemande']);
 								echo "<tr>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."</a></td>
-									<td>".$row['suggestion_forum']."</td>
+									<td>".$dateFormat->format('d/m/Y')."</td>
+									<td>".$row['demande']."</td>
+									<td>
+								        <button name=\"id_infos\" class=\"btn waves-effect waves-light red darken-3\" type=\"submit\"
+								        value=\"".$row['id_INFORMATIONS']."\" onclick='supprimerDemande(".$row['id_INFORMATIONS'].")'>
+								        <i class=\"material-icons center\">delete_forever</i></button>
+									</td>
 								</tr>";
 							}
 						echo "</table>";	
