@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<title>CommentFaire.fr</title>
+		<title>Recherche ...</title>
 		<meta charset="UTF-8">
 		<link rel="icon" href="../../../ressources/images/icon.ico" />
 		<link rel="stylesheet" href="CSS/materialize/css/materialize.min.css" media="screen, projection">
@@ -24,11 +24,11 @@
 
 					<?php 
 						// On récupère toutes les catégories
-						$result = mysqli_query($co, "SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes, dislikes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY WHERE title_tutorial LIKE '%".$_GET['search']."%' ORDER BY dateCreation DESC LIMIT 4")
+						$result = mysqli_query($co, "SELECT id_TUTORIAL, title_tutorial, firstname, lastname, dateCreation, label, likes FROM TUTORIAL NATURAL JOIN SURFER NATURAL JOIN CATEGORY WHERE title_tutorial LIKE \"%".$_GET['search']."%\" ORDER BY dateCreation DESC LIMIT 4")
 							or die("Impossible d'exécuter la requête de recherche de tuto.");
 
 						if (mysqli_num_rows($result) != 0){
-							echo "<fieldset><legend>Tutoriels contenant <b><i>\"".$_GET["search"]."\"</i></b></legend>
+							echo "<fieldset><legend>Tutoriels en relation avec <b><i>\"".$_GET["search"]."\"</i></b></legend>
 							<table>
 							    <tr>
 									<th>Tutoriels</th>
@@ -36,7 +36,6 @@
 									<th>Créateur</th>
 									<th>Création</th>
 									<th>Likes</th>
-									<th>Dislikes</th>
 							    </tr>";
 
 								while ($row = mysqli_fetch_assoc($result)) {
@@ -46,26 +45,24 @@
 										<td>".$row['firstname']." ".$row['lastname']."</td>
 										<td>".$row['dateCreation']."</td>
 										<td>".$row['likes']."</td>
-										<td>".$row['dislikes']."</td>
 									</tr>";
 								}
 							echo "</table></fieldset>";
-						}
+						} else echo "<fieldset><legend>Il n'y a pas de tutoriels en relation avec \"<i><b>".$_GET["search"]."</b></i>\".</legend></fieldset>";
 					?>
 
 					<?php
-						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, firstname, lastname, dateCreation, likes, dislikes FROM FORUM NATURAL JOIN SURFER WHERE title_forum LIKE '%".$_GET['search']."%' ORDER BY likes DESC LIMIT 4")
+						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, firstname, lastname, dateCreation, likes FROM FORUM NATURAL JOIN SURFER WHERE title_forum LIKE \"%".$_GET['search']."%\" ORDER BY likes DESC LIMIT 4")
 							or die("Impossible d'exécuter la requête de recherche de forums.");
 
 						if (mysqli_num_rows($result) != 0){
-							echo "<fieldset><legend>Forums contenant <b><i>\"".$_GET["search"]."\"</i></b></legend>
+							echo "<fieldset><legend>Forums en relation avec <b><i>\"".$_GET["search"]."\"</i></b></legend>
 							<table>
 							    <tr>
 									<th>Tutoriels</th>
 									<th>Créateur</th>
 									<th>Création</th>
 									<th>Likes</th>
-									<th>Dislikes</th>
 							    </tr>";
 
 								while ($row = mysqli_fetch_assoc($result)) {
@@ -74,11 +71,10 @@
 										<td>".$row['firstname']." ".$row['lastname']."</td>
 										<td>".$row['dateCreation']."</td>
 										<td>".$row['likes']."</td>
-										<td>".$row['dislikes']."</td>
 									</tr>";
 								}
 							echo "</table></fieldset>";
-						}
+						} else echo "<fieldset><legend>Il n'y a pas de forums en relation avec \"<i><b>".$_GET["search"]."</b></i>\".</legend></fieldset>";
 					?>
 			</div>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<title>Mes forums postés</title>
+		<title>Demandes d'informations</title>
 		<meta charset="UTF-8">
 		<link rel="icon" href="../../../ressources/images/icon.ico" />
 		<link rel="stylesheet" href="CSS/materialize/css/materialize.min.css" media="screen, projection">
@@ -23,28 +23,28 @@
 			<div class="composant_contenu_body">
 
 				<fieldset>
-					<legend>Les forums que vous avez posté</legend>
+					<legend>Demandes d'informations des utilisateurs</legend>
 
 					<?php
-						// On récupère toutes les catégories
-						$result = mysqli_query($co, "SELECT id_FORUM, title_forum, dateCreation, likes FROM FORUM NATURAL JOIN SURFER WHERE id_SURFER = '".$_SESSION['id_SURFER']."' ORDER BY dateCreation DESC") or die("Impossible d'exécuter la requête des forums persos.");
+						$result = mysqli_query($co, "SELECT * FROM INFORMATIONS NATURAL JOIN SURFER") or die("Impossible d'exécuter la requête des demandes d'informations.");
 						
 						echo "<table>
 						    <tr>
-								<th>Forums</th>
-								<th>Création</th>
-								<th>Likes</th>
+								<th>Utilisateur</th>
+								<th>Date</th>
+								<th>Demande</th>
 								<th></th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
+								$dateFormat = new DateTime($row['dateDemande']);
 								echo "<tr>
-									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."</a></td>
-									<td>".date("d/m/Y", $row['dateCreation'])."</td>
-									<td>".$row['likes']."</td>
+									<td>".$row['firstname']." ".$row['lastname']."</td>
+									<td>".$dateFormat->format('d/m/Y')."</td>
+									<td>".$row['demande']."</td>
 									<td>
-								        <button name=\"id_for\" class=\"btn waves-effect waves-light red darken-3\" type=\"submit\" value=\"".$row['id_FORUM']."\" onclick='supprimerForum(".$row['id_FORUM'].")'>
-											<i class=\"material-icons center\">delete_forever</i>
-										</button>
+								        <button name=\"id_infos\" class=\"btn waves-effect waves-light red darken-3\" type=\"submit\"
+								        value=\"".$row['id_INFORMATIONS']."\" onclick='supprimerDemande(".$row['id_INFORMATIONS'].")'>
+								        <i class=\"material-icons center\">delete_forever</i></button>
 									</td>
 								</tr>";
 							}
@@ -55,10 +55,12 @@
 			</div>
 
 			<div class="composant_contenu_body" id="categories"></div>
+
 		</div>
 
 		<?php }
 				else echo "<h3 class='title_no_connection'>Vous n'êtes pas connecté.</h3>"; ?>
+
 	</body>
 
 	<?php include 'components/footer.html'; ?>

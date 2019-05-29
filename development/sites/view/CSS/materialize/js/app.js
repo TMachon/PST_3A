@@ -83,3 +83,15 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.tooltipped').tooltip();
   });
+
+function supprimerForum(idForum) {
+    if (confirm("Voulez-vous vraiment supprimer ce forum ?")) window.location.href = "../controller/supprimerForum.php?id_for=" + idForum;
+}
+
+function supprimerTutoriel(idTutoriel) {
+    if (confirm("Voulez-vous vraiment supprimer ce tutoriel ?")) window.location.href = "../controller/supprimerTutoriel.php?id_tuto=" + idTutoriel;
+}
+
+function supprimerDemande(idDemande) {
+    if (confirm("Voulez-vous vraiment supprimer cette demande d'information ?")) window.location.href = "../controller/supprimerDemande.php?id_demande=" + idDemande;
+}

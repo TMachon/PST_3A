@@ -5,4 +5,8 @@
 	<li class="collection-item"><a href="./forums_persos.php" class="collection-item"><i class="material-icons left">format_quote</i>Vos forums</a></li>
 	<li class="collection-item"><a href="./reponses_persos.php" class="collection-item"><i class="material-icons left">sms</i>Vos réponses</a></li>
 	<li class="collection-item"><a href="./alertes_persos.php" class="collection-item"><i class="material-icons left">sms_failed</i>Vos alertes</a></li>
+	<?php
+		if ($_SESSION['statutAdmin']){ ?>
+			<li class="collection-item"><a href="./informations.php" class="collection-item"><i class="material-icons left">question_answer</i>Demandes d'information</a></li>
+		<?php }?>
  </ul>

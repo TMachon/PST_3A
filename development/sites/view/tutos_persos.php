@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<title>CommentFaire.fr</title>
+		<title>Mes tutoriels postés</title>
 		<meta charset="UTF-8">
 		<link rel="icon" href="../../../ressources/images/icon.ico" />
 		<link rel="stylesheet" href="CSS/materialize/css/materialize.min.css" media="screen, projection">
@@ -40,8 +40,13 @@
 								echo "<tr>
 									<td><a href=\"./pageTutoriel.php?id_tuto=".$row['id_TUTORIAL']."\">".$row['title_tutorial']."</a></td>
 									<td>".$row['label']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".date("d/m/Y", $row['dateCreation'])."</td>
 									<td>".$row['likes']."</td>
+									<td>
+								        <button name=\"id_tuto\" class=\"btn waves-effect waves-light red darken-3\" type=\"submit\" value=\"".$row['id_TUTORIAL']."\" onclick='supprimerTutoriel(".$row['id_TUTORIAL'].")'>
+											<i class=\"material-icons center\">delete_forever</i>
+										</button>
+									</td>
 								</tr>";
 							}
 						echo "</table>";	

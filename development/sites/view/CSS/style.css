@@ -13,6 +13,13 @@ body{
  	position: center;
 }
 
+.pagedegarde{
+	background-color: #C0D6E4;
+	margin: 20px;
+	padding: 15px;
+	border-radius: 15px;
+}
+
 img{
 	background-color: white;
 	margin: 2px;
@@ -94,6 +101,7 @@ fieldset{
 	margin-top: 5%;
 	margin-bottom: 5%;
 	width: 750px;
+	border-radius: 15px;
 }
 
 legend{

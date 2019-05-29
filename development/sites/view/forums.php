@@ -50,10 +50,12 @@
 						    // le SELECT de la requête SQL
 
 							while ($row = mysqli_fetch_assoc($result)) {
+								$dateFormat = new DateTime($row['dateCreation']);
+
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."<span>".$row['contents']."</span></a></td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".$dateFormat->format('d/m/Y')."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}
@@ -77,10 +79,12 @@
 								<th>Likes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
+								$dateFormat = new DateTime($row['dateCreation']);
+
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."<span>".$row['contents']."</span></a></td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".$dateFormat->format('d/m/Y')."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}
@@ -104,10 +108,12 @@
 								<th>Likes</th>
 						    </tr>";
 							while ($row = mysqli_fetch_assoc($result)) {
+								$dateFormat = new DateTime($row['dateCreation']);
+								
 								echo "<tr>
 									<td><a href=\"./pageForum.php?id_for=".$row['id_FORUM']."\">".$row['title_forum']."<span>".$row['contents']."</span></a></td>
 									<td>".$row['firstname']." ".$row['lastname']."</td>
-									<td>".$row['dateCreation']."</td>
+									<td>".$dateFormat->format('d/m/Y')."</td>
 									<td>".$row['likes']."</td>
 								</tr>";
 							}
