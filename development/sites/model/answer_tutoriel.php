@@ -15,11 +15,8 @@
         }
     
         public function insert_answer($session){
-            echo "Entrée dans la fonction \n";
-            var_dump($this->contents);
             if(!empty($this->contents) && !empty($session)){
-                echo "Entrée dans la boucle \n";
-                mysqli_query($this->connexion,"INSERT INTO ANSWER_TUTORIEL (id_SURFER, id_TUTORIEL, dateResponse_F, contentsAF) VALUES
+                mysqli_query($this->connexion,"INSERT INTO ANSWER_TUTORIAL (id_SURFER, id_TUTORIAL, dateResponse_T, contentsAT) VALUES
                 (" . $this->author . ", " . $this->id_tutoriel . ", '" . date('Y-m-d H:i:s') . "', '" . addslashes($this->contents) . "')");
             }
         }

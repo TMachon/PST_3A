@@ -78,7 +78,7 @@
 								    <div class=\"chip blue darken-4 white-text\">
 								    		<img src=\"data:image;base64,".$infos_id['picture']."\">";
 											echo ucfirst(strtolower($infos_id['firstname']))." ".strtoupper($infos_id['lastname']).
-									"</div><br><br>".$infos_forum['contents'].'<br><span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span><br>';
+									"</div><br><br>".$infos_forum['contents'].'<br><span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span><br><br>';
 								?>
 							</fieldset>
 
@@ -87,7 +87,6 @@
 								echo $ui;?>
 								<input type="text" id="addComment" name="addComment" placeholder="Ajouter un commentaire">
 								<button class ="btn waves-effect waves-light center" type="submit" formethod="put"> Ajouter le commentaire </button>
-								<br><br>
 							</form>
 
 							<?php } else { ?>
