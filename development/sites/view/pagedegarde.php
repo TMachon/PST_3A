@@ -46,19 +46,25 @@
 				<font size="+3" color ="#ba004a">
 					<strong> Nous contacter ? </strong>
 				</font>
+				
+				<?php
+					if (!empty($_SESSION)){ ?>
+						<form method="POST" action="../view/messageEnvoye.php">
+							<div class="row">
+								<div class="input-field col s12">
+									<textarea name="message" id="message" class="materialize-textarea"></textarea>
+									<label for="message">Votre message</label>
+								</div>
+							</div>
 
-				<form method="POST" action="../view/messageEnvoye.php">
-					<div class="row">
-						<div class="input-field col s12">
-							<textarea name="message" id="message" class="materialize-textarea"></textarea>
-							<label for="message">Votre message</label>
-						</div>
-					</div>
-
-					<button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Envoyer
-						<i class="material-icons left">contact_mail</i>
-					</button>
-				</form>
+							<button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Envoyer
+								<i class="material-icons left">contact_mail</i>
+							</button>
+						</form>
+					<?php }
+					else{
+						echo "<blockquote>Vous devez vous connecter pour nous contacter.</blockquote>";
+					} ?>
 			</div>
 
 			<div class="composant_contenu_body">
