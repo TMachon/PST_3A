@@ -25,18 +25,14 @@
                 $result_for = mysqli_query($co, "SELECT id_SURFER, title_forum FROM FORUM WHERE id_FORUM = $id_for");
                 $infos_forum = mysqli_fetch_assoc($result_for);
 
-                $id_surfer = $infos_forum['id_SURFER'];
-                $result_surfer = mysqli_query($co, "SELECT firstname, lastname, mail FROM SURFER WHERE id_SURFER = $id_surfer");
-                $infos_surfer = mysqli_fetch_assoc($result_surfer);
-
 				?>
 					<fieldset>
-                        <?php echo "Suggestion à " . $infos_surfer['firstname'] . ' ' . $infos_surfer['lastname'] . " à propos du forum \"" . 
-                        $infos_forum['title_forum'] . "\"" . " :"; ?> 
-                        <?php $ui = '<form method="POST" action = "../controller/suggestionForum.php?id_for=' . $id_for . '" >';echo $ui;?>
-					    <input type="text" id="Suggestion" name="Suggestion" placeholder="Rédiger une suggestion">
-						<button class ="btn waves-effect waves-light center" type="submit" formethod="put">Envoyer la suggestion</button></form>
-						<br><br>
+                        <?php echo "Suggestion envoyée avec succès !"; ?> 
+                        <form method="post" action="accueil.php">
+				        <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action" id="btnAccueil">Retour à l'accueil
+					        <i class="material-icons left">arrow_back</i>
+				        </button>
+			            </form>
 
 
 
