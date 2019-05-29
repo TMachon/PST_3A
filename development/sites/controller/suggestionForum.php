@@ -4,7 +4,6 @@
     include('../model/suggestion_forum.php');
 
     $id_for = $_GET['id_for'];
-    $id_SURFER = $_SESSION['id_SURFER'];
 	$url = 'Location:../view/conf_suggestion_forum.php?id_for=' . $id_for;
 
 	header($url);

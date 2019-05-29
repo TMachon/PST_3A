@@ -114,7 +114,7 @@
 
 			<div class="composant_contenu_body">
 				<?php
-					include 'components/latest_tutoriel.php';
+					include 'components/latest_forum.php';
 				?>
 			</div>
 

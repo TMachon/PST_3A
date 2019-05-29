@@ -11,9 +11,7 @@
 	    }
 
 		public function suppression(){
-			include('bd.php');
-
-			$stmt = $co->prepare('DELETE FROM INFORMATIONS WHERE id_INFORMATIONS = ?');
+			$stmt = $this->connexion->prepare('DELETE FROM INFORMATIONS WHERE id_INFORMATIONS = ?');
 			$stmt->bind_param('d', $this->id_Information);
 			$stmt->execute();
 			$resultDeleteDemande = $stmt->get_result();

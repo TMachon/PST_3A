@@ -16,8 +16,11 @@
     
         public function insert_suggestion($session){
             if(!empty($this->contents) && !empty($session)){
-                mysqli_query($this->connexion,"INSERT INTO SUGGESTION_FORUM (id_SURFER, id_FORUM,suggestion_forum) VALUES
-                (" . $this->surfer . ", " . $this->id_forum . ", '" . addslashes($this->contents) . "')");
+                $stmt = $this->connexion->prepare("INSERT INTO SUGGESTION_FORUM (id_SURFER, id_FORUM, suggestion_forum) VALUES (?, ?, ?)");
+                $stmt->bind_param('dds', $this->surfer, $this->id_forum, $this->contents);
+                $stmt->execute();
+                $resultinsert_suggestion = $stmt->get_result();
+                $stmt->close();
             }
         }
     }

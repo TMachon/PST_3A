@@ -11,8 +11,9 @@
 
 		public function __construct(){
 			include('bd.php'); // accès à la BD MySQL
+			$this->connexion = $co;
 
-			$stmt = $co->prepare('SELECT mail FROM ADMIN WHERE mail = ?');
+			$stmt = $this->connexion->prepare('SELECT mail FROM ADMIN WHERE mail = ?');
 			$stmt->bind_param('s', func_get_arg(0));
 			$stmt->execute();
 			$resultAdmin = $stmt->get_result();
@@ -24,7 +25,6 @@
 	        $this->prenom = func_get_arg(1);
 	        $this->nom = func_get_arg(2);
 	        $this->id_SURFER = func_get_arg(3);
-			$this->connexion = $co;
 	    }
 
 		public function modifier($newmail){
@@ -46,21 +46,17 @@
 		}
 
 		public function inscription($password, $idAvatar){
-			include('bd.php'); // accès à la BD MySQL
-
-			$stmt = $co->prepare('INSERT INTO SURFER (mail, password, lastname, firstname, id_IMAGE_ACCOUNT) VALUES (?, ?, ?, ?, ?)');
+			$stmt = $this->connexion->prepare('INSERT INTO SURFER (mail, password, lastname, firstname, id_IMAGE_ACCOUNT) VALUES (?, ?, ?, ?, ?)');
 			$stmt->bind_param('ssssd', $this->mail, $password, $this->nom, $this->prenom, $idAvatar);
 			$stmt->execute();
 			$resultInsertSurfer = $stmt->get_result();
 			$stmt->close();
 
-			$this->id_SURFER = mysqli_insert_id($co);
+			$this->id_SURFER = mysqli_insert_id($this->connexion);
 		}
 
 		public function modifInfosPersos($nom, $prenom, $email){
-			include('bd.php'); // accès à la BD MySQL
-
-			$stmt = $co->prepare('UPDATE SURFER SET firstname = ?, lastname = ?, mail = ? WHERE id_SURFER = ?');
+			$stmt = $this->connexion->prepare('UPDATE SURFER SET firstname = ?, lastname = ?, mail = ? WHERE id_SURFER = ?');
 			$stmt->bind_param('sssd', $prenom, $nom, $email, $_SESSION['id_SURFER']);
 			$stmt->execute();
 			$resultModifInfosPersos = $stmt->get_result();
@@ -72,9 +68,7 @@
 		}
 
 		public function modifPassword($NewPassword){
-			include('bd.php'); // accès à la BD MySQL
-
-			$stmt = $co->prepare('UPDATE SURFER SET password = ? WHERE id_SURFER = ?');
+			$stmt = $this->connexion->prepare('UPDATE SURFER SET password = ? WHERE id_SURFER = ?');
 			$stmt->bind_param('sd', $NewPassword, $_SESSION['id_SURFER']);
 			$stmt->execute();
 			$resultModifPassword = $stmt->get_result();
