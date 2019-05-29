@@ -27,6 +27,10 @@
 		<ul class="left hide-on-med-and-down">
 			<li class="<?php
 							if(end(explode('/', $_SERVER['REQUEST_URI'])) == 'accueil.php') echo 'active';
+						?>"><a href="accueil.php">Accueil</a>
+			</li>
+			<li class="<?php
+							if(end(explode('/', $_SERVER['REQUEST_URI'])) == 'accueil.php') echo 'active';
 						?>"><a href="accueil.php">Tutoriels</a>
 			</li>
 			<li class="<?php
