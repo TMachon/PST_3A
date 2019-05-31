@@ -47,7 +47,15 @@
 					<div class="card teal darken-4">
 						<div class="card-content white-text">
 							<span class="card-title">Choisissez votre avatar<font size="3"> (optionnel)</font></span>
-							<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+							<div class="file-field input-field">
+								<div class="btn">
+									<span>Image</span>
+									<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text">
+								</div>
+							</div>
 							<br><img id="previewAvatar" src="#"/>
 						</div>
 					</div>

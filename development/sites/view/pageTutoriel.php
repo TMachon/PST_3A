@@ -30,7 +30,7 @@
 					FROM ANSWER_TUTORIAL NATURAL JOIN SURFER NATURAL JOIN IMAGEACCOUNT WHERE id_TUTORIAL = ".$id_tuto." ORDER BY dateResponse_T");
 				?>
 					<fieldset>
-						<legend><?php echo $infos_tutoriel['title_tutoriel']; ?></legend>
+						<legend><font face="Helvetica"><b><?php echo $infos_tutoriel['title_tutorial']; ?></b></font></legend>
 
 							<div class="row">
 
@@ -77,7 +77,7 @@
 								    <div class=\"chip blue darken-4 white-text\">
 								    		<img src=\"data:image;base64,".$infos_id['picture']."\">";
 											echo ucfirst(strtolower($infos_id['firstname']))." ".strtoupper($infos_id['lastname']).
-									"</div><br><br>".$infos_tutoriel['contents'].'<br><span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span><br><br>';
+									"</div><br>".$infos_tutoriel['contents'].'<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span><br>';
 								?>
 							</fieldset>
 
@@ -101,8 +101,8 @@
 								    <div class=\"chip blue darken-4 white-text\">
 								    		<img src=\"data:image;base64,".$comments['picture']."\">";
 											echo ucfirst(strtolower($comments['firstname']))." ".strtoupper($comments['lastname']).
-									"</div><br><br>".$comments['contentsAT'] . '<br>
-									<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span><br></div>';
+									"</div><br>".$comments['contentsAT'].'
+									<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span></div>';
 								}?>
 							</div>
 					</fieldset>
