@@ -17,7 +17,7 @@
 		<?php include('components/banner.php'); // On inclut la bannière ?>
 		
 		<div id="formulaire">
-			<form enctype="multipart/form-data" action="../controller/inscription.php" method="post">		
+			<form enctype="multipart/form-data" action="../controller/inscription.php" method="post">
 				<div class="row">
 					<div class="input-field col s6">
 						<i class="material-icons prefix">account_box</i>
