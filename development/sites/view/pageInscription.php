@@ -67,7 +67,7 @@
 			</form>
 
 			<form method="post" action="pageConnexion.php">
-	        	<button class="waves-effect waves-teal btn-flat" type="submit" name="action">Se connecter</button>
+	        	<button class="waves-effect waves-teal btn-flat purple lighten-5" type="submit" name="action">Se connecter</button>
 			</form>
 
 			<form method="post" action="accueil.php">

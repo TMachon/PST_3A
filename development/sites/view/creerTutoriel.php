@@ -22,62 +22,78 @@
 
 			<div class="composant_contenu_body corps">
 
-				<h5 class="center">Créer votre propre tutoriel dans n'importe quelle catégorie !</h5>
+				<?php if (!empty($_SESSION)){ ?>
 
-				<blockquote>
-					N'écrivez pas en majuscule, n'utilisez pas le langage SMS et les abréviations, soignez la mise en page de votre message.
-				</blockquote>
+					<h5 class="center">Créer votre propre tutoriel dans n'importe quelle catégorie !</h5>
+					<blockquote>
+						N'écrivez pas en majuscule, n'utilisez pas le langage SMS et les abréviations, soignez la mise en page de votre message.
+					</blockquote>
 
-				<div class="row">
-					<form enctype="multipart/form-data" method="POST" action="../controller/creerTutoriel.php" class="col s12">
-						<div class="row">
-							<div class="input-field col s12">
-								<i class="material-icons prefix">format_list_bulleted</i>
-								<select name="choix_categorie">
-									<option value="" disabled selected>Choisissez la catégorie du tutoriel</option>
-									<?php
-										$result = mysqli_query($co, 'SELECT * FROM CATEGORY ORDER BY label') or die("Impossible d'exécuter la requête des categories.");
+					<div class="row">
+						<form enctype="multipart/form-data" method="POST" action="../controller/creerTutoriel.php" class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">format_list_bulleted</i>
+									<select name="choix_categorie">
+										<option value="" disabled selected>Choisissez la catégorie du tutoriel</option>
+										<?php
+											$result = mysqli_query($co, 'SELECT * FROM CATEGORY ORDER BY label') or die("Impossible d'exécuter la requête des categories.");
 
-										while ($row = mysqli_fetch_assoc($result)) {
-											echo "
-												<option value=\"".$row['id_CATEGORY']."\">".$row['label']."</option>
-											</tr>";
-										}
+											while ($row = mysqli_fetch_assoc($result)) {
+												echo "
+													<option value=\"".$row['id_CATEGORY']."\">".$row['label']."</option>
+												</tr>";
+											}
 
-									?>
-								</select>
+										?>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<i class="material-icons prefix">title</i>
-								<input id="title_tutoriel" name="title_tutoriel_create" class="validate" type="text">
-								<label for="title_tutoriel">Titre du tutoriel</label>
+							<div class="row">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">title</i>
+									<input id="title_tutoriel" name="title_tutoriel_create" class="validate" type="text">
+									<label for="title_tutoriel">Titre du tutoriel</label>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<i class="material-icons prefix">format_quote</i>
-								<textarea id="area_content" name="content_tutoriel_create" class="validate materialize-textarea"></textarea>
-								<label for="area_content">Votre tutoriel</label>
+							<div class="row">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">format_quote</i>
+									<textarea id="area_content" name="content_tutoriel_create" class="validate materialize-textarea"></textarea>
+									<label for="area_content">Votre tutoriel</label>
+								</div>
 							</div>
-						</div>
-						<br>
-						<div class="file-field input-field">
-							<div class="btn">
-								<span>Illustrations</span>
-								<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="illustrations">
+							<br>
+							<div class="file-field input-field">
+								<div class="btn">
+									<span>Illustrations</span>
+									<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="illustrations">
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text">
+								</div>
 							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text">
-							</div>
-						</div>
 
-						<button class="btn waves-effect waves-light center btnCreate" type="submit" name="action">Créer ce tutoriel
-							<i class="material-icons right">send</i>
-						</button>
+							<button class="btn waves-effect waves-light center btnCreate" type="submit" name="action">Créer ce tutoriel
+								<i class="material-icons right">send</i>
+							</button>
+						</form>
+					</div>
+
+				<?php } else{ ?>
+					<blockquote>
+						Vous devez vous connecter pour créer un tutoriel.
+					</blockquote>
+
+					<form method="post" action="pageConnexion.php">
+			        	<button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Se connecter</button>
 					</form>
-				</div>
+
+					<form method="post" action="pageInscription.php">
+			        	<button class="waves-effect waves-teal btn-flat purple lighten-5" type="submit" name="action">S'inscrire</button>
+					</form>
+				<?php } ?>
+
 			</div>
 
 			<div class="composant_contenu_body">
