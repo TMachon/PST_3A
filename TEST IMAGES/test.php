@@ -17,14 +17,14 @@
 						<div class="file-field input-field">
 							<div class="btn">
 								<span>Image</span>
-								<input multiple type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+								<input multiple type="file" class="form-control" onchange="readURLSeveralImages(this);" accept="image/*" name="avatar">
 							</div>
 							<div class="file-path-wrapper">
 								<input class="file-path validate" type="text">
 							</div>
 						</div>
 						<br>
-							<div id="illustrations"></div>
+							<div class="carousel" id="illustrations"></div>
 					</div>
 				</div>
 			</div>
