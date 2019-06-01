@@ -23,7 +23,7 @@
 			<div class="composant_contenu_body">
 
 				<fieldset><legend>Vos informations personnelles</legend>
-					<form enctype="multipart/form-data" action="../controller/modifierCompte.php" method="post">		
+					<form enctype="multipart/form-data" action="../controller/modifierCompte.php" method="POST">		
 						<div class="row">
 							<div class="row">
 								<div class="input-field col s6">
@@ -47,7 +47,15 @@
 								<div class="card teal darken-4">
 									<div class="card-content white-text">
 										<span class="card-title">Choisissez votre avatar<font size="3"> (optionnel)</font></span>
-										<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+										<div class="file-field input-field">
+											<div class="btn">
+												<span>Avatar</span>
+												<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+											</div>
+											<div class="file-path-wrapper">
+												<input class="file-path validate" type="text">
+											</div>
+										</div>
 		    							<br><img id="previewAvatar" src="#"/>
 									</div>
 								</div>

@@ -4,7 +4,11 @@ $(document).ready(function(){
 	$('.fixed-action-btn').floatingActionButton();
 });
 
- function readURL(input) {
+$(document).ready(function(){
+    $('select').formSelect();
+});
+
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 

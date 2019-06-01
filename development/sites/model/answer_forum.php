@@ -16,8 +16,11 @@
     
         public function insert_answer($session){
             if(!empty($this->contents) && !empty($session)){
-                mysqli_query($this->connexion,"INSERT INTO ANSWER_FORUM (id_SURFER, id_FORUM, dateResponse_F, contentsAF) VALUES
-                (" . $this->author . ", " . $this->id_forum . ", '" . date('Y-m-d H:i:s') . "', '" . addslashes($this->contents) . "')");
+                $stmt = $this->connexion->prepare("INSERT INTO ANSWER_FORUM (id_SURFER, id_FORUM, dateResponse_F, contentsAF) VALUES
+                (?, ?, ?, ?)");
+                $stmt->bind_param('ssss', $this->author, $this->id_forum, date('Y-m-d H:i:s'), $this->contents);
+                $stmt->execute();
+                $resultinsert_answer = $stmt->get_result();
             }
         }
     }

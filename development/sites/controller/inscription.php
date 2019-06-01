@@ -29,7 +29,6 @@
 
 			if (!getimagesize($_FILES['avatar']['tmp_name']) == false) { // si l'utilisateur a renseigné une photo de profil
 		        $image = addslashes($_FILES['avatar']['tmp_name']);
-		        $name  = addslashes($_FILES['avatar']['tmp_name']);
 		        $image = file_get_contents($image);
 		        $image = base64_encode($image);
 
