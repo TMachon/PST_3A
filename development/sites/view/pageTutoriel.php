@@ -23,7 +23,7 @@
 			<div class="composant_contenu_body">
 				<?php
 					$id_tuto = $_GET['id_tuto'];
-					$result = mysqli_query($co, "SELECT * FROM TUTORIAL WHERE id_TUTORIAL = ".$id_tuto);
+					$result = mysqli_query($co, "SELECT * FROM TUTORIAL NATURAL JOIN CATEGORY WHERE id_TUTORIAL = ".$id_tuto);
 					$infos_tutoriel = mysqli_fetch_assoc($result);
 
 					$commentsrequest = mysqli_query($co, "SELECT picture, firstname, lastname, contentsAT, dateResponse_T 
@@ -77,7 +77,9 @@
 								    <div class=\"chip blue darken-4 white-text\">
 								    		<img src=\"data:image;base64,".$infos_id['picture']."\">";
 											echo ucfirst(strtolower($infos_id['firstname']))." ".strtoupper($infos_id['lastname']).
-									"</div><br>".$infos_tutoriel['contents'].'<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span><br>';
+									"</div><br>".$infos_tutoriel['contents'].'<br>
+									<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span>
+									<span class="new badge red" data-badge-caption="">'.$infos_tutoriel['label'].'</span><br>';
 								?>
 							</fieldset>
 

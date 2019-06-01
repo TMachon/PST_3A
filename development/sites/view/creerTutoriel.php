@@ -29,7 +29,7 @@
 				</blockquote>
 
 				<div class="row">
-					<form method="POST" action="../controller/creerTutoriel.php" class="col s12">
+					<form enctype="multipart/form-data" method="POST" action="../controller/creerTutoriel.php" class="col s12">
 						<div class="row">
 							<div class="input-field col s12">
 								<i class="material-icons prefix">format_list_bulleted</i>
@@ -66,7 +66,7 @@
 						<div class="file-field input-field">
 							<div class="btn">
 								<span>Illustrations</span>
-								<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="avatar">
+								<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="illustrations">
 							</div>
 							<div class="file-path-wrapper">
 								<input class="file-path validate" type="text">

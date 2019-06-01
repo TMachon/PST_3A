@@ -55,16 +55,34 @@
 			$this->id_SURFER = mysqli_insert_id($this->connexion);
 		}
 
-		public function modifInfosPersos($nom, $prenom, $email){
+		public function modifInfosPersos($avatar){
 			$stmt = $this->connexion->prepare('UPDATE SURFER SET firstname = ?, lastname = ?, mail = ? WHERE id_SURFER = ?');
-			$stmt->bind_param('sssd', $prenom, $nom, $email, $_SESSION['id_SURFER']);
+			$stmt->bind_param('sssd', $this->prenom, $this->nom, $this->mail, $_SESSION['id_SURFER']);
 			$stmt->execute();
 			$resultModifInfosPersos = $stmt->get_result();
 			$stmt->close();
 			
-			$_SESSION['mail'] = $email;
-			$_SESSION['prenom'] = $prenom;
-			$_SESSION['nom'] = $nom;
+			$_SESSION['mail'] = $this->mail;
+			$_SESSION['prenom'] = $this->prenom;
+			$_SESSION['nom'] = $this->nom;
+
+			// On modifie l'avatar s'il a été renseigné dans le formulaire
+			if (!getimagesize($avatar) == false) {
+		        $image = addslashes($avatar);
+		        $image = file_get_contents($image);
+		        $image = base64_encode($image);
+
+		        $stmt = $this->connexion->prepare('SELECT id_IMAGE_ACCOUNT FROM SURFER WHERE id_SURFER = ?');
+				$stmt->bind_param('d', $_SESSION['id_SURFER']);
+				$stmt->execute();
+				$resultModifInfosPersos = $stmt->get_result();
+				$row = mysqli_fetch_assoc($resultModifInfosPersos);
+				$id_image_account = $row['id_IMAGE_ACCOUNT'];
+				$stmt->close();
+				
+		        $result = mysqli_query($this->connexion, "UPDATE IMAGEACCOUNT SET picture = '$image' WHERE id_IMAGE_ACCOUNT = $id_image_account")
+		        or die("Impossible d'inserer image blob avatar modifié.");
+		    }
 		}
 
 		public function modifPassword($NewPassword){

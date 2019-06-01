@@ -3,12 +3,14 @@
 		private $connexion; // connexion à la BD MySQL du serveur
 		private $title_tutoriel;
 		private $contents;
+		private $category;
 
 		public function __construct(){
 	    	include('bd.php');
 
 	        $this->title_tutoriel = func_get_arg(0);
 	        $this->contents = func_get_arg(1);
+	        $this->category = func_get_arg(2);
 			$this->connexion = $co;
 	    }
 
@@ -38,12 +40,21 @@
 			$stmt->close();
 		}
 
-		public function creation($id_SURFER){
-			$stmt = $this->connexion->prepare('INSERT INTO TUTORIAL (id_SURFER, contents, dateCreation, title_tutoriel) VALUES (?, ?, ?, ?)');
-			$stmt->bind_param('dsss', $_SESSION['id_SURFER'], $this->contents, date("Y-m-d H:i:s"), $this->title_tutoriel);
+		public function creation($illustrations){
+			$stmt = $this->connexion->prepare('INSERT INTO TUTORIAL (id_SURFER, contents, dateCreation, title_tutorial, id_CATEGORY) VALUES (?, ?, ?, ?, ?)');
+			$stmt->bind_param('dsssd', $_SESSION['id_SURFER'], $this->contents, date("Y-m-d H:i:s"), $this->title_tutoriel, $this->category);
 			$stmt->execute();
 			$resultInsertTutoriel = $stmt->get_result();
+			$idTuto = mysqli_insert_id($this->connexion);
 			$stmt->close();
+
+			if (!getimagesize($illustrations) == false) { // si l'utilisateur a renseigné des illustrations pour son tutoriel
+		        $image = addslashes($illustrations);
+		        $image = file_get_contents($image);
+		        $image = base64_encode($image);
+
+		        $result = mysqli_query($this->connexion, "INSERT INTO IMAGETUTORIAL (picture, id_TUTORIAL) VALUES ('$image', $idTuto)") or die("Impossible d'inserer image blob tutoriel.");
+		    }
 		}
 
 		public function like_tutoriel($id_SURFER, $idTutoriel){
