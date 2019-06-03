@@ -39,7 +39,7 @@
 				</font>
 
 				<p> Commentfaire.fr est un lieu d'entraide et de partage.<br><br>
-				Afin de vous assurer une navigation sans encombre sur notre site, nous vous demendons de bien vouloir respecter les r&egrave;gles de base en restant poli et respectueux nottament dans les sections commentaires et sur le forum.</p>
+				Afin de vous assurer une navigation sans encombre sur notre site, nous vous demandons de bien vouloir respecter les r&egrave;gles de base en restant poli et respectueux notamment dans les sections commentaires et sur le forum.</p>
 
 				<p> Merci &agrave; tous !</p> <br/>
 
@@ -49,15 +49,15 @@
 				
 				<?php
 					if (!empty($_SESSION)){ ?>
-						<form method="POST" action="../view/messageEnvoye.php">
+						<form method="POST" action="../controller/creerInformation.php">
 							<div class="row">
 								<div class="input-field col s12">
-									<textarea name="message" id="message" class="materialize-textarea"></textarea>
+									<textarea id="demandeInfo" name="demandeInfo" class="materialize-textarea"></textarea>
 									<label for="message">Votre message</label>
 								</div>
 							</div>
 
-							<button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Envoyer
+							<button class="btn waves-effect waves-light light-blue darken-1" type="submit">Envoyer
 								<i class="material-icons left">contact_mail</i>
 							</button>
 						</form>
