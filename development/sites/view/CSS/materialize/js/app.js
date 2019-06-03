@@ -100,9 +100,16 @@ function supprimerDemande(idDemande) {
     if (confirm("Voulez-vous vraiment supprimer cette demande d'information ?")) window.location.href = "../controller/supprimerDemande.php?id_demande=" + idDemande;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems, options);
+$(document).ready(function(){
+    $('.carousel').carousel(
+    {
+        fullWidth: true,
+        indicators : true
+    });
+});
+
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true
 });
 
 function readURLSeveralImages(input) {
@@ -112,13 +119,10 @@ function readURLSeveralImages(input) {
             var reader = new FileReader();
             var preview_n = "preview" + i;
 
-            $(".carousel").append("<a class='carousel-item'>");
             reader.onload = function (e) {
-                    $($.parseHTML("<img id='illustrations'>"))
-                        .attr('src', e.target.result)
-                        .appendTo('#illustrations');
+                $($.parseHTML("<a class=\"carousel-item\"><img src='" + e.target.result + "'></a>"))
+                    .appendTo('#DivIllustrations');
             };
-            $(".carousel").append("</a>");
 
             reader.readAsDataURL(input.files[i]);
         }

@@ -21,10 +21,13 @@
 			</div>
 
 			<div class="composant_contenu_body">
+
 				<?php
 					$id_tuto = $_GET['id_tuto'];
 					$result = mysqli_query($co, "SELECT * FROM TUTORIAL NATURAL JOIN CATEGORY WHERE id_TUTORIAL = ".$id_tuto);
 					$infos_tutoriel = mysqli_fetch_assoc($result);
+
+					$resultImages = mysqli_query($co, "SELECT * FROM TUTORIAL NATURAL JOIN IMAGETUTORIAL WHERE id_TUTORIAL = ".$id_tuto);
 
 					$commentsrequest = mysqli_query($co, "SELECT picture, firstname, lastname, contentsAT, dateResponse_T 
 					FROM ANSWER_TUTORIAL NATURAL JOIN SURFER NATURAL JOIN IMAGEACCOUNT WHERE id_TUTORIAL = ".$id_tuto." ORDER BY dateResponse_T");
@@ -79,19 +82,27 @@
 											echo ucfirst(strtolower($infos_id['firstname']))." ".strtoupper($infos_id['lastname']).
 									"</div><br>".$infos_tutoriel['contents'].'<br>
 									<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span>
-									<span class="new badge red" data-badge-caption="">'.$infos_tutoriel['label'].'</span><br>';
+									<span class="new badge red" data-badge-caption="">'.$infos_tutoriel['label'].'</span>';
 								?>
 							</fieldset>
 
-							<?php if(!empty($_SESSION)){
+							<?php
+
+								echo "<div class=\"carousel carousel-slider\">";
+								while($images = mysqli_fetch_assoc($resultImages)) {
+									echo "<a class=\"carousel-item\"><img id=\"illustrations\" src=\"data:image;base64,".$images['picture']."\"></a>";
+								}
+								echo "</div>";
+
+							if(!empty($_SESSION)){
 								echo '<form method="POST" action = "../controller/creerAnswerTutoriel.php?id_tuto=' . $id_tuto . '" >'; ?>
-								<input type="text" id="addComment" name="addComment" placeholder="Ajouter un commentaire">
+								<br><input type="text" id="addComment" name="addComment" placeholder="Ajouter un commentaire">
 								<button class ="btn waves-effect waves-light center" type="submit" formethod="put"> Ajouter le commentaire </button>
 							</form>
 
 							<?php } else { ?>
 								<form method="post" action="pageConnexion.php">
-	        						<button class="btn waves-effect waves-light center" type="submit" name="action">Se connecter pour ajouter un commentaire</button>
+	        						<br><button class="btn waves-effect waves-light center" type="submit" name="action">Se connecter pour ajouter un commentaire</button>
 								</form>
 							<?php }
 						

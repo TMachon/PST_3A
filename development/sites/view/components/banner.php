@@ -8,6 +8,6 @@
 			</li>
 		</ul>
 
-		<a href="accueil.php" class="brand-logo center"><img width="60" height="60" src="../../../ressources/images/logo2.png" alt="logo"/> </a>
+		<a href="accueil.php" class="brand-logo center"><img id="bandeau" width="60" height="60" src="../../../ressources/images/logo2.png" alt="logo"/> </a>
 	</div>
 </nav>

@@ -10,13 +10,11 @@ function readURLSeveralImages(input) {
             var reader = new FileReader();
             var preview_n = "preview" + i;
 
-            $(".carousel").append("<a class='carousel-item'>");
             reader.onload = function (e) {
                     $($.parseHTML("<img id='illustrations'>"))
                         .attr('src', e.target.result)
                         .appendTo('#illustrations');
             };
-            $(".carousel").append("</a>");
 
             reader.readAsDataURL(input.files[i]);
         }
