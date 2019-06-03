@@ -10,14 +10,14 @@
 	</head>
 
 	<body>
-		<form enctype="multipart/form-data" action="#" method="post">
+		<form enctype="multipart/form-data" action="controler.php" method="POST">
 			<div class="row center">
 				<div class="card teal darken-4">
 					<div class="card-content white-text">
 						<div class="file-field input-field">
 							<div class="btn">
 								<span>Image</span>
-								<input multiple type="file" class="form-control" onchange="readURLSeveralImages(this);" accept="image/*" name="avatar">
+								<input multiple="multiple" type="file" class="form-control" onchange="readURLSeveralImages(this);" accept="image/*" name="avatar[]">
 							</div>
 							<div class="file-path-wrapper">
 								<input class="file-path validate" type="text">
@@ -28,6 +28,11 @@
 					</div>
 				</div>
 			</div>
+
+			<input type="text" id="name" name="name">
+
+			<button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Afficher</button>
+
 		</form>
 	</body>
 

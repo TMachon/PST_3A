@@ -37,6 +37,13 @@ img.footer_esiea_logo{
 	margin-bottom: -10px;
 }
 
+img#illustrations{
+	background-color: white;
+	margin: 2px;
+	border-radius: 20px;
+    height: 30%;
+}
+
 th, td{
 	text-align: center;
 }

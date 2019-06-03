@@ -48,8 +48,8 @@
 			$idTuto = mysqli_insert_id($this->connexion);
 			$stmt->close();
 
-			if (!getimagesize($illustrations) == false) { // si l'utilisateur a renseigné des illustrations pour son tutoriel
-		        $image = addslashes($illustrations);
+	        foreach($illustrations as $key=>$val){
+		    	$image = addslashes($val);
 		        $image = file_get_contents($image);
 		        $image = base64_encode($image);
 

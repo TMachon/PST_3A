@@ -63,14 +63,21 @@
 									<label for="area_content">Votre tutoriel</label>
 								</div>
 							</div>
-							<br>
-							<div class="file-field input-field">
-								<div class="btn">
-									<span>Illustrations</span>
-									<input type="file" class="form-control" onchange="readURL(this);" accept="image/*" name="illustrations">
-								</div>
-								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text">
+							<div class="row center">
+								<div class="card teal darken-4">
+									<div class="card-content white-text">
+										<div class="file-field input-field">
+											<div class="btn">
+												<span>Image</span>
+												<input multiple="multiple" type="file" class="form-control" onchange="readURLSeveralImages(this);" accept="image/*" name="illustrations[]">
+											</div>
+											<div class="file-path-wrapper">
+												<input class="file-path validate" type="text">
+											</div>
+										</div>
+										<br>
+											<div class="carousel" id="illustrations"></div>
+									</div>
 								</div>
 							</div>
 
