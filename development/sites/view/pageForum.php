@@ -59,7 +59,7 @@
 											</div>
 									<?php } ?>
 									<div class="col s6">
-										<?php $ui = '<form method="POST" action = "pageSuggestion.php?id_for=' . $id_for . '" >';
+										<?php $ui = '<form method="POST" action = "pageSuggestionForum.php?id_for=' . $id_for . '" >';
 											echo $ui;?>
 											<button class="btn waves-effect waves-light right" type="submit" name="action">Envoyer une suggestion</button>
 										</form>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<title>Forum</title>
+		<title>Suggestion Tutoriel</title>
 		<meta charset="UTF-8">
 		<link rel="icon" href="../../../ressources/images/icon.ico" />
 		<link rel="stylesheet" href="CSS/materialize/css/materialize.min.css" media="screen, projection">
@@ -21,28 +21,23 @@
 			</div>
 
 			<div class="composant_contenu_body">
-                <?php $id_for = $_GET['id_for'];
-                $result_for = mysqli_query($co, "SELECT id_SURFER, title_forum FROM FORUM WHERE id_FORUM = $id_for");
-                $infos_forum = mysqli_fetch_assoc($result_for);
+                <?php
+                	if (!empty($_GET['id_tuto'])){
 
-                $id_surfer = $infos_forum['id_SURFER'];
-                $result_surfer = mysqli_query($co, "SELECT firstname, lastname, mail FROM SURFER WHERE id_SURFER = $id_surfer");
-                $infos_surfer = mysqli_fetch_assoc($result_surfer);
-
-				?>
-					<fieldset>
-                        <?php echo "Suggestion à " . $infos_surfer['firstname'] . ' ' . $infos_surfer['lastname'] . " à propos du forum \"" . 
-                        $infos_forum['title_forum'] . "\"" . " :"; ?> 
-                        <?php $ui = '<form method="POST" action = "../controller/suggestionForum.php?id_for=' . $id_for . '" >';echo $ui;?>
+		                $result_tuto = mysqli_query($co, "SELECT firstname, lastname, mail, id_SURFER, title_tutorial FROM TUTORIAL NATURAL JOIN SURFER WHERE id_TUTORIAL = ".$_GET['id_tuto']);
+		                $infos_tuto = mysqli_fetch_assoc($result_tuto);
+						
+						echo "<fieldset>Suggestion à <b>" . $infos_tuto['firstname'] . ' ' . $infos_tuto['lastname'] . "</b> à propos du tutoriel <b>" . 
+                    	$infos_tuto['title_tutorial'] . "</b>" . " :";
+                   
+                    	$ui = '<form method="POST" action = "../controller/suggestionTutoriel.php?id_tuto=' . $_GET['id_tuto'] . '" >';
+                    	echo $ui;
+                    ?>
 					    <input type="text" id="Suggestion" name="Suggestion" placeholder="Rédiger une suggestion">
 						<button class ="btn waves-effect waves-light center" type="submit" formethod="put">Envoyer la suggestion</button></form>
-						<br><br>
-
-
-
-					</fieldset>
-				<?php
-				?>
+						
+						</fieldset>
+				<?php } ?>
 			</div>
 
 			<div class="composant_contenu_body">

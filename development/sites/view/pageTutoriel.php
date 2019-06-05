@@ -62,7 +62,7 @@
 											</div>
 									<?php } ?>
 									<div class="col s6">
-										<?php echo '<form method="POST" action = "pageSuggestion.php?id_tuto='.$id_tuto.'" >'; ?>
+										<?php echo '<form method="POST" action = "pageSuggestionTutoriel.php?id_tuto='.$_GET['id_tuto'].'" >'; ?>
 											<button class="btn waves-effect waves-light right" type="submit" name="action">Envoyer une suggestion</button>
 										</form>
 									</div>
@@ -88,11 +88,11 @@
 
 							<?php
 
-								echo "<div class=\"carousel carousel-slider\">";
+								if (mysqli_num_rows($resultImages) > 0) echo "<div class=\"carousel carousel-slider\">";
 								while($images = mysqli_fetch_assoc($resultImages)) {
 									echo "<a class=\"carousel-item\"><img id=\"illustrations\" src=\"data:image;base64,".$images['picture']."\"></a>";
 								}
-								echo "</div>";
+								if (mysqli_num_rows($resultImages) > 0) echo "</div>";
 
 							if(!empty($_SESSION)){
 								echo '<form method="POST" action = "../controller/creerAnswerTutoriel.php?id_tuto=' . $id_tuto . '" >'; ?>
