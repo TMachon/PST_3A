@@ -68,14 +68,12 @@
 									<div class="file-field input-field">
 										<div class="btn">
 											<span>Image</span>
-											<input multiple="multiple" type="file" class="form-control" onchange="readURLSeveralImages(this);" accept="image/*" name="illustrations[]">
+											<input multiple="multiple" type="file" class="form-control" accept="image/*" name="illustrations[]">
 										</div>
 										<div class="file-path-wrapper">
 											<input class="file-path validate" type="text">
 										</div>
 									</div>
-									<br>
-										<div class="carousel" id="DivIllustrations"></div>
 								</div>
 							</div>
 

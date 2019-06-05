@@ -42,6 +42,10 @@ img#illustrations{
     width: 100%;
 }
 
+img#creation_illustrations{
+	height: 40%;
+}
+
 th, td{
 	text-align: center;
 }

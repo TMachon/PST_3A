@@ -103,25 +103,33 @@ function supprimerDemande(idDemande) {
 $(document).ready(function(){
     $('.carousel').carousel(
     {
-        fullWidth: true,
         indicators : true
     });
 });
 
-$('.carousel.carousel-slider').carousel({
-    fullWidth: true
-});
+$('.carousel.carousel-slider').carousel();
 
 function readURLSeveralImages(input) {
     if (input.files) {
 
         for(var i = 0; i < input.files.length; i++){
             var reader = new FileReader();
-            var preview_n = "preview" + i;
 
-            reader.onload = function (e) {
-                $($.parseHTML("<a class=\"carousel-item\"><img src='" + e.target.result + "'></a>"))
+            /*reader.onload = function (e) {
+                $("#DivIllustrations").append("<a class=\"carousel-item\">");
+                $($.parseHTML("<img id=\"illustrations\">"))
+                    .attr('src', e.target.result)
                     .appendTo('#DivIllustrations');
+                $("#DivIllustrations").append("</a>");
+            };*/
+
+            $("#DivIllustrations").append("<a class=\"carousel-item\" id=\"a_img\">");
+            reader.onload = function (e) {
+                alert(e.target.result);
+                    $($.parseHTML("<img id=\"creation_illustrations\">"))
+                        .attr('src', e.target.result)
+                        .appendTo('#a_img');
+                        $("#a_img").append("</a>");
             };
 
             reader.readAsDataURL(input.files[i]);
