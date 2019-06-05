@@ -15,6 +15,12 @@
 	    }
 
 		public function suppression($idTutorial){
+			$stmt = $this->connexion->prepare('DELETE FROM IMAGETUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
+
 			$stmt = $this->connexion->prepare('DELETE FROM SUGGESTION_TUTORIAL WHERE id_TUTORIAL = ?');
 			$stmt->bind_param('d', $idTutorial);
 			$stmt->execute();

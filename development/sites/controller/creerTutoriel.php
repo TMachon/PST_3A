@@ -13,7 +13,7 @@
 		$stmt->close();
 
 		if (mysqli_num_rows($resultTitle) == 0){
-			header('Location:../view/tutorielCree.php');
+			header('Location:../view/accueil.php');
 
 			$newTutoriel = new Tutoriel(htmlspecialchars($_POST['title_tutoriel_create']), htmlspecialchars($_POST['content_tutoriel_create']), (int)$_POST['choix_categorie']);
 			$newTutoriel->creation($_FILES['illustrations']['tmp_name']);
