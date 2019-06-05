@@ -21,7 +21,7 @@
 <nav class="blue lighten-1">
 	<div class="nav-wrapper">
 		<a href="accueil.php" class="brand-logo center">
-			<img width="60" height="60" src="../../../ressources/images/logo2.png" alt="logo"/>
+			<img width="60" id="bandeau" height="60" src="../../../ressources/images/logo2.png" alt="logo"/>
 		</a>
 
 		<ul class="left hide-on-med-and-down">

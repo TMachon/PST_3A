@@ -17,7 +17,7 @@
 		<?php include('components/banner.php'); // On inclut la bannière ?>
 		
 		<div id="formulaire">
-			<form enctype="multipart/form-data" action="../controller/inscription.php" method="post">		
+			<form enctype="multipart/form-data" action="../controller/inscription.php" method="post">
 				<div class="row">
 					<div class="input-field col s6">
 						<i class="material-icons prefix">account_box</i>
@@ -67,7 +67,7 @@
 			</form>
 
 			<form method="post" action="pageConnexion.php">
-	        	<button class="waves-effect waves-teal btn-flat" type="submit" name="action">Se connecter</button>
+	        	<button class="waves-effect waves-teal btn-flat purple lighten-5" type="submit" name="action">Se connecter</button>
 			</form>
 
 			<form method="post" action="accueil.php">

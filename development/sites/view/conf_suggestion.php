@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<title>Forum</title>
+		<title>Suggestion envoyée</title>
 		<meta charset="UTF-8">
 		<link rel="icon" href="../../../ressources/images/icon.ico" />
 		<link rel="stylesheet" href="CSS/materialize/css/materialize.min.css" media="screen, projection">
@@ -21,13 +21,8 @@
 			</div>
 
 			<div class="composant_contenu_body">
-                <?php $id_for = $_GET['id_for'];
-                $result_for = mysqli_query($co, "SELECT id_SURFER, title_forum FROM FORUM WHERE id_FORUM = $id_for");
-                $infos_forum = mysqli_fetch_assoc($result_for);
-
-				?>
 					<fieldset>
-                        <?php echo "Suggestion envoyée avec succès !"; ?> 
+                        <?php echo "<h3><b>Suggestion envoyée avec succès !</b></h3>"; ?> 
                         <form method="post" action="accueil.php">
 				        <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action" id="btnAccueil">Retour à l'accueil
 					        <i class="material-icons left">arrow_back</i>

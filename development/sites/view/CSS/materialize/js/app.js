@@ -99,3 +99,40 @@ function supprimerTutoriel(idTutoriel) {
 function supprimerDemande(idDemande) {
     if (confirm("Voulez-vous vraiment supprimer cette demande d'information ?")) window.location.href = "../controller/supprimerDemande.php?id_demande=" + idDemande;
 }
+
+$(document).ready(function(){
+    $('.carousel').carousel(
+    {
+        indicators : true
+    });
+});
+
+$('.carousel.carousel-slider').carousel();
+
+function readURLSeveralImages(input) {
+    if (input.files) {
+
+        for(var i = 0; i < input.files.length; i++){
+            var reader = new FileReader();
+
+            /*reader.onload = function (e) {
+                $("#DivIllustrations").append("<a class=\"carousel-item\">");
+                $($.parseHTML("<img id=\"illustrations\">"))
+                    .attr('src', e.target.result)
+                    .appendTo('#DivIllustrations');
+                $("#DivIllustrations").append("</a>");
+            };*/
+
+            $("#DivIllustrations").append("<a class=\"carousel-item\" id=\"a_img\">");
+            reader.onload = function (e) {
+                alert(e.target.result);
+                    $($.parseHTML("<img id=\"creation_illustrations\">"))
+                        .attr('src', e.target.result)
+                        .appendTo('#a_img');
+                        $("#a_img").append("</a>");
+            };
+
+            reader.readAsDataURL(input.files[i]);
+        }
+    }
+}

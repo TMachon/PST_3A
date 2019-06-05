@@ -13,7 +13,7 @@
 		$stmt->close();
 
 		if (mysqli_num_rows($resultTitle) == 0){
-			header('Location:../view/forumCree.php');
+			header('Location:../view/forums.php');
 
 			$newForum = new Forum(htmlspecialchars($_POST['title_forum_create']), htmlspecialchars($_POST['content_forum_create']));
 			$newForum->creation($_SESSION['id_SURFER']);

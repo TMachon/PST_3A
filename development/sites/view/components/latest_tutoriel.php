@@ -2,7 +2,7 @@
 	include '../model/bd.php';
 	
 	// On récupère toutes les catégories
-	$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial FROM TUTORIAL') or die("Impossible d'exécuter la requête des tutoriels.");
+	$result = mysqli_query($co, 'SELECT id_TUTORIAL, title_tutorial FROM TUTORIAL ORDER BY dateCreation DESC LIMIT 10') or die("Impossible d'exécuter la requête des tutoriels.");
 	
 	echo "<table id=\"liste_laterales_latest\">
     <tr>

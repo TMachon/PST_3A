@@ -15,6 +15,12 @@
 	    }
 
 		public function suppression($idTutorial){
+			$stmt = $this->connexion->prepare('DELETE FROM IMAGETUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
+
 			$stmt = $this->connexion->prepare('DELETE FROM SUGGESTION_TUTORIAL WHERE id_TUTORIAL = ?');
 			$stmt->bind_param('d', $idTutorial);
 			$stmt->execute();
@@ -48,8 +54,8 @@
 			$idTuto = mysqli_insert_id($this->connexion);
 			$stmt->close();
 
-			if (!getimagesize($illustrations) == false) { // si l'utilisateur a renseigné des illustrations pour son tutoriel
-		        $image = addslashes($illustrations);
+	        foreach($illustrations as $key=>$val){
+		    	$image = addslashes($val);
 		        $image = file_get_contents($image);
 		        $image = base64_encode($image);
 
