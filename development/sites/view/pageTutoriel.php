@@ -92,7 +92,10 @@
 								while($images = mysqli_fetch_assoc($resultImages)) {
 									echo "<a class=\"carousel-item\"><img id=\"illustrations\" src=\"data:image;base64,".$images['picture']."\"></a>";
 								}
-								if (mysqli_num_rows($resultImages) > 0) echo "</div>";
+								if (mysqli_num_rows($resultImages) > 0){
+									echo "</div>";
+									if (mysqli_num_rows($resultImages) > 1) echo "<img width=\"60\" id=\"swipe_gesture\" height=\"60\" src=\"../../../ressources/images/swipe_gesture.png\"/>";
+								}
 
 							if(!empty($_SESSION)){
 								echo '<form method="POST" action = "../controller/creerAnswerTutoriel.php?id_tuto=' . $id_tuto . '" >'; ?>

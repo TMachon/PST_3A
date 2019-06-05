@@ -46,6 +46,12 @@ img#creation_illustrations{
 	height: 40%;
 }
 
+img#swipe_gesture{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 th, td{
 	text-align: center;
 }
