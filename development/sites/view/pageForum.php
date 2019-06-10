@@ -42,7 +42,7 @@
 											<div class="col s6">
 												<form method="post" action="<?php echo "../controller/like_dislike_forum.php?id_for=".$_GET['id_for']; ?>">
 													<button class="btn tooltipped waves-effect waves-light red darken-2 btnSpan" type="submit" name="action" id="btnAccueil" data-position="right"
-													data-tooltip="<?php echo $infos_forum["likes"].' likes'; ?>">Dislike
+													data-tooltip="<?php echo $infos_forum["likes"].' likes'; ?>">Unlike
 														<i class="material-icons left">thumb_down</i>
 													</button>
 												</form>
