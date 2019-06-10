@@ -3,10 +3,7 @@
     include('../model/membre.php');
     include('../model/Demande_infos.php');
 
-	$url = 'Location:../view/messageEnvoye.php';
-
-	header($url);
-	
+	header('Location:../view/messageEnvoye.php');
 	$newDemande = new Demande_infos();
-	$newDemande->creation($_POST['demandeInfo']);
+	$newDemande->creation(htmlspecialchars($_POST['demandeInfo']));
 ?>

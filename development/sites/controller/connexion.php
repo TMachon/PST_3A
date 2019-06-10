@@ -16,7 +16,7 @@
 		else{
 			header('Location:../view/accueil.php');
 			$row = mysqli_fetch_assoc($resultSurfer);
-			$newMembre = new Surfer(htmlspecialchars($_POST['mail']), $row['firstname'], $row['lastname'], $row['id_SURFER']);
+			$newMembre = new Surfer(htmlspecialchars($_POST['mail']), htmlspecialchars($row['firstname']), htmlspecialchars($row['lastname']), htmlspecialchars($row['id_SURFER']));
 			$newMembre->connexion();
 		}
 	}else header('Location:../view/pageConnexion.php');

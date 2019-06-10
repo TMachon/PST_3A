@@ -80,7 +80,7 @@
 								    <div class=\"chip blue darken-4 white-text\">
 								    		<img src=\"data:image;base64,".$infos_id['picture']."\">";
 											echo ucfirst(strtolower($infos_id['firstname']))." ".strtoupper($infos_id['lastname']).
-									"</div><br>".$infos_tutoriel['contents'].'<br>
+									"</div><br>".nl2br($infos_tutoriel['contents']).'<br>
 									<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span>
 									<span class="new badge red" data-badge-caption="">'.$infos_tutoriel['label'].'</span>';
 								?>
@@ -117,7 +117,7 @@
 								    <div class=\"chip blue darken-4 white-text\">
 								    		<img src=\"data:image;base64,".$comments['picture']."\">";
 											echo ucfirst(strtolower($comments['firstname']))." ".strtoupper($comments['lastname']).
-									"</div><br>".$comments['contentsAT'].'
+									"</div><br>".nl2br($comments['contentsAT']).'
 									<span class="new badge" data-badge-caption="">Posté le '.$dateFormat->format('d/m/Y').'</span></div>';
 								}?>
 							</div>

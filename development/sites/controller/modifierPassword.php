@@ -17,7 +17,7 @@
 		if ($exist){
 			header('Location:../view/infos_persos.php');
 
-			$Membre = new Surfer($_SESSION['mail'], $_SESSION['prenom'], $_SESSION['nom']);
+			$Membre = new Surfer(htmlspecialchars($_SESSION['mail']), htmlspecialchars($_SESSION['prenom']), htmlspecialchars($_SESSION['nom']));
 			$Membre->modifPassword(htmlspecialchars($_POST['NewPassword']));
 			
 		}else header('Location:../view/infos_persos.php');

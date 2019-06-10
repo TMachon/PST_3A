@@ -5,6 +5,6 @@
 
 	header('Location:../view/conf_suggestion.php');
 	
-	$newSuggestionTutoriel = new Suggestion_Tutoriel($_GET['id_tuto'], $_SESSION['id_SURFER'], $_POST['Suggestion']);
+	$newSuggestionTutoriel = new Suggestion_Tutoriel($_GET['id_tuto'], $_SESSION['id_SURFER'], htmlspecialchars($_POST['Suggestion']));
 	$newSuggestionTutoriel->insert_suggestion();
 ?>

@@ -5,6 +5,6 @@
 
 	header('Location:../view/conf_suggestion.php');
 	
-	$newSuggestionForum = new Suggestion_Forum($_GET['id_for'], $_SESSION['id_SURFER'], $_POST['Suggestion']);
+	$newSuggestionForum = new Suggestion_Forum($_GET['id_for'], $_SESSION['id_SURFER'], htmlspecialchars($_POST['Suggestion']));
 	$newSuggestionForum->insert_suggestion();
 ?>
