@@ -39,7 +39,7 @@
 										$result = mysqli_query($co, "SELECT * FROM LIKE_FORUM WHERE id_FORUM = ".$id_for." AND id_SURFER = ".$_SESSION['id_SURFER']);
 										if (mysqli_num_rows($result) != 0){
 									?>
-											<div class="col s6">
+											<div class="right">
 												<form method="post" action="<?php echo "../controller/like_dislike_forum.php?id_for=".$_GET['id_for']; ?>">
 													<button class="btn tooltipped waves-effect waves-light red darken-2 btnSpan" type="submit" name="action" id="btnAccueil" data-position="right"
 													data-tooltip="<?php echo $infos_forum["likes"].' likes'; ?>">Unlike
@@ -49,7 +49,7 @@
 											</div>
 									<?php }
 										else { ?>
-											<div class="col s6">
+											<div class="right">
 												<form method="post" action="<?php echo "../controller/like_dislike_forum.php?id_for=".$_GET['id_for']; ?>">
 													<button class="btn tooltipped waves-effect waves-light green accent-4 btnSpan" type="submit" name="action" id="btnAccueil" data-position="right"
 													data-tooltip="<?php echo $infos_forum["likes"].' likes'; ?>">Like
@@ -58,10 +58,17 @@
 												</form>
 											</div>
 									<?php } ?>
-									<div class="col s6">
+									<div class="right">
 										<?php $ui = '<form method="POST" action = "pageSuggestionForum.php?id_for=' . $id_for . '" >';
 											echo $ui;?>
-											<button class="btn waves-effect waves-light right" type="submit" name="action">Envoyer une suggestion</button>
+											<button style="margin-right: 10px" class="btn waves-effect waves-light right" type="submit" name="action">Envoyer une suggestion</button>
+										</form>
+									</div>
+									<div class="right">
+										<?php echo '<form method="POST" action = "pageSignalerForum.php?id_for='.$_GET['id_for'].'" >'; ?>
+											<button style="margin-right: 10px" class="btn waves-effect waves-light red darken-2 right" type="submit" name="action">Signaler
+											<i class="material-icons right">report</i>
+										</button>
 										</form>
 									</div>
 									<?php } ?>

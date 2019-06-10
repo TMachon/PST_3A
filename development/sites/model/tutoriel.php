@@ -15,6 +15,12 @@
 	    }
 
 		public function suppression($idTutorial){
+			$stmt = $this->connexion->prepare('DELETE FROM SIGNALEMENT_TUTORIAL WHERE id_TUTORIAL = ?');
+			$stmt->bind_param('d', $idTutorial);
+			$stmt->execute();
+			$resultDeleteTutoriel = $stmt->get_result();
+			$stmt->close();
+
 			$stmt = $this->connexion->prepare('DELETE FROM IMAGETUTORIAL WHERE id_TUTORIAL = ?');
 			$stmt->bind_param('d', $idTutorial);
 			$stmt->execute();
@@ -88,6 +94,14 @@
 			$stmt->bind_param('s', $idTutoriel);
 			$stmt->execute();
 			$resultIncDislikes = $stmt->get_result();
+			$stmt->close();
+		}
+
+		public function signaler($id_SURFER, $idTutoriel, $idMotif){
+			$stmt = $this->connexion->prepare('INSERT INTO SIGNALEMENT_TUTORIAL (id_SURFER, id_TUTORIAL, id_MOTIF_SIGNALEMENT) VALUES (?, ?, ?)');
+			$stmt->bind_param('ddd', $id_SURFER, $idTutoriel, $idMotif);
+			$stmt->execute();
+			$resultSignalementTuto = $stmt->get_result();
 			$stmt->close();
 		}
 	}

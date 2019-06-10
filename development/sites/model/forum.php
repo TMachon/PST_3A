@@ -15,6 +15,12 @@
 		public function suppression($id_FORUM){
 			include('bd.php');
 
+			$stmt = $co->prepare('DELETE FROM SIGNALEMENT_FORUM WHERE id_FORUM = ?');
+			$stmt->bind_param('d', $id_FORUM);
+			$stmt->execute();
+			$resultDeleteForum = $stmt->get_result();
+			$stmt->close();
+
 			$stmt = $co->prepare('DELETE FROM SUGGESTION_FORUM WHERE id_FORUM = ?');
 			$stmt->bind_param('d', $id_FORUM);
 			$stmt->execute();
@@ -80,6 +86,14 @@
 			$stmt->bind_param('s', $idForum);
 			$stmt->execute();
 			$resultIncDislikes = $stmt->get_result();
+			$stmt->close();
+		}
+
+		public function signaler($id_SURFER, $idForum, $idMotif){
+			$stmt = $this->connexion->prepare('INSERT INTO SIGNALEMENT_FORUM (id_SURFER, id_FORUM, id_MOTIF_SIGNALEMENT) VALUES (?, ?, ?)');
+			$stmt->bind_param('ddd', $id_SURFER, $idForum, $idMotif);
+			$stmt->execute();
+			$resultSignalementForum = $stmt->get_result();
 			$stmt->close();
 		}
 	}

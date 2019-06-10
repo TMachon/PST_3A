@@ -8,5 +8,6 @@
 	<?php
 		if ($_SESSION['statutAdmin']){ ?>
 			<li class="collection-item"><a href="./informations.php" class="collection-item"><i class="material-icons left">question_answer</i>Demandes d'information</a></li>
+			<li class="collection-item"><a href="./signalements.php" class="collection-item"><i class="material-icons left">report</i>Signalements</a></li>
 		<?php }?>
  </ul>

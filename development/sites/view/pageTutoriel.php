@@ -42,28 +42,35 @@
 										$result = mysqli_query($co, "SELECT * FROM LIKE_TUTORIAL WHERE id_TUTORIAL = ".$id_tuto." AND id_SURFER = ".$_SESSION['id_SURFER']);
 										if (mysqli_num_rows($result) != 0){
 									?>
-											<div class="col s6">
+											<div class="right">
 												<form method="post" action="<?php echo "../controller/like_dislike_tutoriel.php?id_tuto=".$_GET['id_tuto']; ?>">
-													<button class="btn tooltipped waves-effect waves-light red darken-2 btnSpan" type="submit" name="action" id="btnAccueil" data-position="right"
+													<button class="btn tooltipped waves-effect waves-light red darken-2 btnSpan" type="submit" name="action" data-position="right"
 													data-tooltip="<?php echo $infos_tutoriel["likes"].' likes'; ?>">Unlike
-														<i class="material-icons left">thumb_down</i>
+														<i class="material-icons right">thumb_down</i>
 													</button>
 												</form>
 											</div>
 									<?php }
 										else { ?>
-											<div class="col s6">
+											<div class="right">
 												<form method="post" action="<?php echo "../controller/like_dislike_tutoriel.php?id_tuto=".$_GET['id_tuto']; ?>">
-													<button class="btn tooltipped waves-effect waves-light green accent-4 btnSpan" type="submit" name="action" id="btnAccueil" data-position="right"
+													<button class="btn tooltipped waves-effect waves-light green accent-4 btnSpan" type="submit" name="action"  data-position="right"
 													data-tooltip="<?php echo $infos_tutoriel["likes"].' likes'; ?>">Like
-														<i class="material-icons left">thumb_up</i>
+														<i class="material-icons right">thumb_up</i>
 													</button>
 												</form>
 											</div>
 									<?php } ?>
-									<div class="col s6">
+									<div class="right">
 										<?php echo '<form method="POST" action = "pageSuggestionTutoriel.php?id_tuto='.$_GET['id_tuto'].'" >'; ?>
-											<button class="btn waves-effect waves-light right" type="submit" name="action">Envoyer une suggestion</button>
+											<button style="margin-right: 10px" class="btn waves-effect waves-light right" type="submit" name="action">Suggestion !</button>
+										</form>
+									</div>
+									<div class="right">
+										<?php echo '<form method="POST" action = "pageSignalerTuto.php?id_tuto='.$_GET['id_tuto'].'" >'; ?>
+											<button style="margin-right: 10px" class="btn waves-effect waves-light red darken-2 right" type="submit" name="action">Signaler
+											<i class="material-icons right">report</i>
+										</button>
 										</form>
 									</div>
 									<?php } ?>

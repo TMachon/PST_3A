@@ -35,14 +35,13 @@
 								<div class="input-field col s12">
 									<i class="material-icons prefix">format_list_bulleted</i>
 									<select name="choix_categorie">
-										<option value="" disabled selected>Choisissez la catégorie du tutoriel</option>
+										<option disabled selected>Choisissez la catégorie du tutoriel</option>
 										<?php
 											$result = mysqli_query($co, 'SELECT * FROM CATEGORY ORDER BY label') or die("Impossible d'exécuter la requête des categories.");
 
 											while ($row = mysqli_fetch_assoc($result)) {
 												echo "
-													<option value=\"".$row['id_CATEGORY']."\">".$row['label']."</option>
-												</tr>";
+													<option value=\"".$row['id_CATEGORY']."\">".$row['label']."</option>";
 											}
 
 										?>
